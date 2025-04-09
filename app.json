@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "DEMO_ZOMATO_APP",
-    "slug": "DEMO_ZOMATO_APP",
+    "name": "Zumato",
+    "slug": "Zumato",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
