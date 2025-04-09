@@ -19,9 +19,11 @@ const ViewCart3 = () =>{
       ];
 
       return (
+        
         <FlatList
         data={data}
         renderItem={({ item }) => <List title={item.title} />}
+        
       />
       );
     }

@@ -37,7 +37,7 @@ const FlatlistComponent = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Enter Name"
+        placeholder="Search Restro and dishes here  "
         value={name}
         onChangeText={setName}
         style={styles.input}
@@ -56,7 +56,6 @@ export default FlatlistComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
     padding: 10,
   },
   text: {
@@ -65,7 +64,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   input: {
-    height: 80,
+    borderRadius:5,
     margin: 12,
     borderWidth: 1,
     padding: 10,
