@@ -4,7 +4,6 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { getHeight } from "../utils/stylehelper";
 
 interface AppButtonProps {
   onPress?: () => void;
