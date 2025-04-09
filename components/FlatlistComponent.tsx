@@ -4,14 +4,13 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-
+  TextInput,
 } from "react-native";
 import React from "react";
 import ItemComponent from "./ItemComponent";
 import { useState } from "react";
-import {  useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../apis/api";
-import { useQueryClient } from "@tanstack/react-query";
 
 const FlatlistComponent = () => {
   //useQuery
@@ -21,7 +20,6 @@ const FlatlistComponent = () => {
   });
   //useQuery
 
-  
   //useState
   const [name, setName] = useState("");
   //useState
@@ -32,12 +30,18 @@ const FlatlistComponent = () => {
   if (isError) {
     return <Text style={styles.text}>Error fetching data!</Text>;
   }
- 
+
   if (fetchStatus === "fetching") {
     return <Text style={styles.text}> fetching data for query</Text>;
   }
   return (
     <View style={styles.container}>
+      <TextInput
+        placeholder="Enter Name"
+        value={name}
+        onChangeText={setName}
+        style={styles.input}
+      />
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
