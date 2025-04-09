@@ -5,7 +5,7 @@ export const fetchPosts = async () => {
     if (!result) {
       throw new Error("Invalid API response");
     }
-    console.log(result);
+    // console.log(result);
     return result;
   } catch (error) {
     console.error("Error fetching data:", error);

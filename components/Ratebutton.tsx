@@ -6,10 +6,8 @@ const Ratebutton = () => {
   return (
     <View>
       <TouchableOpacity style={styles.rate}>
-        {" "}
-        <Text>
-          4.1 <Ionicons name="star" color={"yellow"} />
-        </Text>{" "}
+        <Text>4.1</Text>
+        <Ionicons name="star" color={"yellow"} />
       </TouchableOpacity>
     </View>
   );

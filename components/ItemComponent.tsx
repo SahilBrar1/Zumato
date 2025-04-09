@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View,TextInput } from "react-native";
+import { StyleSheet, View, TextInput } from "react-native";
 import AppButton from "./AppButton";
 
 type ItemProps = { name: string; id?: number };
