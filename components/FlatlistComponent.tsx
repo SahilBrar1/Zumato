@@ -4,18 +4,16 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  TextInput,
-  Button,
+
 } from "react-native";
 import React from "react";
 import ItemComponent from "./ItemComponent";
 import { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { fetchPosts, postData } from "../apis/api";
+import {  useQuery } from "@tanstack/react-query";
+import { fetchPosts } from "../apis/api";
 import { useQueryClient } from "@tanstack/react-query";
 
 const FlatlistComponent = () => {
-  const queryClient = useQueryClient();
   //useQuery
   const { data, isLoading, isError, fetchStatus } = useQuery({
     queryKey: ["posts"],
@@ -23,14 +21,7 @@ const FlatlistComponent = () => {
   });
   //useQuery
 
-  //useMutation
-  const mutation = useMutation({
-    mutationFn: postData,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["posts"] });
-    },
-  });
-  //useMutation
+  
   //useState
   const [name, setName] = useState("");
   //useState
@@ -41,25 +32,12 @@ const FlatlistComponent = () => {
   if (isError) {
     return <Text style={styles.text}>Error fetching data!</Text>;
   }
-  if (mutation.isPending) {
-    return <Text style={styles.text}>fetching data in mutation</Text>;
-  }
+ 
   if (fetchStatus === "fetching") {
     return <Text style={styles.text}> fetching data for query</Text>;
   }
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Enter Name"
-        value={name}
-        onChangeText={setName}
-        style={styles.input}
-      />
-      <Button
-        title="Add Title for the post"
-        onPress={() => mutation.mutate({ name })}
-        disabled={mutation.isPending}
-      />
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}

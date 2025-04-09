@@ -1,6 +1,5 @@
 // import React from "react";
 // import FlatlistComponent from "../components/FlatlistComponent";
-// import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // const HomeScreen = () => {
 //   const queryClient = new QueryClient();
@@ -15,16 +14,15 @@
 
 import React from "react";
 import { View, Text, Button } from "react-native";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import FlatlistComponent from "../components/FlatlistComponent";
 
-const HomeScreen = ({ navigation }: any) => {
+const HomeScreen = () => {
+  const queryClient = new QueryClient();
   return (
-    <View>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate("DetailsScreen")}
-      />
-    </View>
+    <QueryClientProvider client={queryClient}>
+       <FlatlistComponent />
+     </QueryClientProvider>
   );
 };
 

@@ -11,13 +11,11 @@ interface AppButtonProps {
 
 const AppButton: React.FC<AppButtonProps> = ({ name }) => (
   <TouchableOpacity activeOpacity={0.1} style={[styles.appButtonContainer]}>
-    <View></View>
-
     <View>
       <Image
         style={styles.img}
-        source={require("../assets/images/pizzaimg.jpg")}
-        resizeMode="cover"
+        source={require("../assets/pizzaimg.jpg")}
+        // resizeMode="cover"
       />
     </View>
     <View style={styles.time}>
