@@ -3,7 +3,7 @@ import React from "react";
 
 import Mybutton from "../components/Mybutton";
 
-const Login = () => {
+const Login = ({ navigation }: any) => {
   return (
     <View>
       <Image style={style.img} source={require("../assets/zomato.jpg")} />
@@ -13,7 +13,7 @@ const Login = () => {
         <TextInput style={style.num} placeholder="+91" />
         <TextInput style={style.input} placeholder=" Enter phone number" />
       </View>
-      <Mybutton />
+      <Mybutton onPress={() => navigation.navigate("Home")} />
       <Text style={style.log}>or</Text>
       <Text style={style.end}>
         By continuing ,you agree to our terms of service privacy policy content

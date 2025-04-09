@@ -20,10 +20,11 @@
 // });
 
 import React from "react";
-import Navigation from "./Navigation"; // Import the Navigation component
+import Navigation from "./Navigation";
+import "react-native-gesture-handler";
 
 const App = () => {
   return <Navigation />;
 };
 
-export default App;  
+export default App;
