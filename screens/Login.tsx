@@ -1,75 +1,88 @@
-import { View, Text, TextInput, StyleSheet, Image } from "react-native";
-import React from "react";
-
-import Mybutton from "../components/Mybutton";
+import { View, Text, TextInput, StyleSheet, Image, TouchableOpacity, Alert } from "react-native";
 
 const Login = ({ navigation }: any) => {
+  const validNumber = '123456789';  
+
+  let userNumber = ''; 
+
+  const handleLogin = () => {
+    if (userNumber === validNumber) {
+      // Alert.alert('Success', 'Login Successful!');
+      navigation.navigate('Home')
+    } else {
+      Alert.alert('Invalid Number', 'Please enter correct number');
+    }
+  };
+
   return (
-    <View>
-      <Image style={style.img} source={require("../assets/zomato.jpg")} />
-      <Text style={style.text}>India's #1 Food Delivery and Dining App</Text>
-      <Text style={style.log}>Log in or Sign up</Text>
-      <View style={style.in}>
-        <TextInput style={style.num} placeholder="+91" />
-        <TextInput style={style.input} placeholder=" Enter phone number" />
-      </View>
-      <Mybutton onPress={() => navigation.navigate("Home")} />
-      <Text style={style.log}>or</Text>
-      <Text style={style.end}>
-        By continuing ,you agree to our terms of service privacy policy content
-        policy
+    <View style={styles.container}>
+      <Image style={styles.image} source={require("../assets/zomato.jpg")} />
+
+      <Text style={styles.title}>India's #1 Food Delivery and Dining App</Text>
+
+      <Text style={styles.log}>Log in or Sign up</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Phone Number"
+        keyboardType="phone-pad"
+        maxLength={10}
+        onChangeText={(text) => userNumber = text}
+      />
+      {/* <Mybutton onPress={() => navigation.navigate("Home")} /> */}
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+        <Text style={styles.buttonText}>Continue</Text>
+      </TouchableOpacity>
+      {/* <Text style={styles.log}>or</Text> */}
+      <Text style={styles.termsText}>
+        By continuing, you agree to our Terms of Service & Privacy Policy
       </Text>
     </View>
   );
 };
 
 export default Login;
-const style = StyleSheet.create({
-  text: {
-    marginLeft: 20,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
     padding: 20,
-    fontSize: 30,
-    fontWeight: "bold",
-    shadowColor: "black",
-    letterSpacing: 2,
+    backgroundColor: '#fff',
+  },
+  image: {
+    width: '100%',
+    height: 250,
+    resizeMode: 'cover',
+    marginBottom: 20,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
   },
   input: {
-    borderWidth: 3,
-    borderRadius: 10,
-    width: "50%",
-    height: 50,
-    textAlign: "center",
-    paddingHorizontal: 5,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 12,
     marginBottom: 20,
-    marginRight: "20%",
-    marginTop: 20,
   },
-  view: {
-    color: "red",
+  button: {
+    backgroundColor: 'red',
+    padding: 15,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 16,
+  },
+  termsText: {
+    marginTop: 20,
+    textAlign: 'center',
+    fontSize: 12,
+    color: '#777',
   },
   log: {
     textAlign: "center",
-  },
-  end: {
-    padding: "25%",
-    marginLeft: 20,
-  },
-  num: {
-    borderWidth: 3,
-    borderRadius: 10,
-    height: 50,
-    margin: 20,
-    marginLeft: "20%",
-  },
-  in: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  img: {
-    height: 350,
-    width: "100%",
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
   },
 });
