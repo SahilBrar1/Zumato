@@ -7,7 +7,6 @@ const Login = () => {
   return (
     <View>
       <Image style={style.img} source={require("../assets/zomato.jpg")} />
-
       <Text style={style.text}>India's #1 Food Delivery and Dining App</Text>
       <Text style={style.log}>Log in or Sign up</Text>
       <View style={style.in}>

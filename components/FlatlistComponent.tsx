@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   StatusBar,
+  
 
 } from "react-native";
 import React from "react";
@@ -38,6 +39,7 @@ const FlatlistComponent = () => {
   }
   return (
     <View style={styles.container}>
+      
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
