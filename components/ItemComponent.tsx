@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     justifyContent: "center",
-    padding: 5,
+    padding: 10,
+    
   },
 });

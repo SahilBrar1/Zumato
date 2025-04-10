@@ -6,7 +6,7 @@ const Ratebutton = () => {
   return (
     <View>
       <TouchableOpacity style={styles.rate}>
-        <Text>4.1</Text>
+        <Text style={styles.color}>4.1</Text>
         <Ionicons name="star" color={"yellow"} />
       </TouchableOpacity>
     </View>
@@ -16,13 +16,21 @@ const Ratebutton = () => {
 export default Ratebutton;
 const styles = StyleSheet.create({
   rate: {
+    display:'flex',
+    flexDirection:'row',
     backgroundColor: "green",
     fontWeight: "bold",
-    alignSelf: "flex-end",
+    justifyContent:'center',
     alignItems: "center",
-    marginRight: 20,
+    verticalAlign:'top',
     width: 50,
     height: 20,
     borderRadius: 5,
+    padding:2
+    
+    
   },
+  color:{
+    color:'white'
+  }
 });

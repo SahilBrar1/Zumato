@@ -55,8 +55,8 @@ const FlatlistComponent = () => {
   }
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Search Restro here"
+      <TextInput 
+        placeholder="Search Restaurant name and dishes here..."
         value={name}
         onChangeText={setName}
         style={styles.input}
@@ -82,6 +82,7 @@ export default FlatlistComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:'white',
     padding: 10,
   },
   text: {
@@ -90,11 +91,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   input: {
-    borderRadius: 5,
+  borderRadius:10,
     margin: 12,
     borderWidth: 1,
     padding: 10,
     marginBottom: 10,
+    
+  
   },
   animationContainer: {
     backgroundColor: "#eee",
@@ -102,4 +105,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1,
   },
+ 
 });
