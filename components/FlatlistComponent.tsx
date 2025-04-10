@@ -3,7 +3,6 @@ import {
   FlatList,
   Text,
   StyleSheet,
-  StatusBar,
   TextInput,
 } from "react-native";
 import React from "react";
@@ -15,8 +14,9 @@ import { fetchPosts } from "../apis/api";
 const FlatlistComponent = () => {
   //useQuery
   const { data, isLoading, isError, fetchStatus } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["hotels"],
     queryFn: fetchPosts,
+    staleTime: Infinity,
   });
   //useQuery
 
@@ -37,7 +37,7 @@ const FlatlistComponent = () => {
   return (
     <View style={styles.container}>
       <TextInput
-        placeholder="Search Restro and dishes here  "
+        placeholder="Search Restro here"
         value={name}
         onChangeText={setName}
         style={styles.input}
@@ -45,7 +45,14 @@ const FlatlistComponent = () => {
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ItemComponent name={item.name} />}
+        renderItem={({ item }) => <ItemComponent name={item.name}/>}
+        initialNumToRender={10}
+        maxToRenderPerBatch={10}
+        windowSize={5}
+        removeClippedSubviews={true}
+        // onEndReached={fetchNextPage}
+        onEndReachedThreshold={0.5}
+        // ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
       />
     </View>
   );
