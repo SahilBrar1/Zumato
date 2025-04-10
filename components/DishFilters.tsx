@@ -3,6 +3,7 @@ import React from 'react'
 
 const ViewCart2 = () => {
   return (  
+    <View style={styles.line}>
     <View style={styles.flexible} >
           <View style={styles.btn}  >
         <TouchableOpacity activeOpacity={0.4}>
@@ -31,6 +32,7 @@ const ViewCart2 = () => {
        </TouchableOpacity>
           </View>
           </View>
+          </View>
   )
 }
 
@@ -48,8 +50,17 @@ flexible:{
     display:'flex',
     flexDirection:'row',
     justifyContent:'space-between',
-
-    padding:30
+    padding:30,
+    elevation:1,
+  
+    shadowOpacity:0.6
+},
+line:{
+  
+        borderBottomColor:'black',
+        borderBottomWidth:1,
+        borderStyle:'dashed',
+    padding:10
 }
 })
 

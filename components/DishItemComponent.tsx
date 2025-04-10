@@ -1,14 +1,20 @@
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+
+
 
 import Ionicons from "@expo/vector-icons/Ionicons";
 type ItemProps = {
   title: string;
 };
 const List = ({ title }: ItemProps) => {
+   const navigation = useNavigation<StackNavigationProp<any>>();
   return (
     <View style={style.viewcontiner}>
-      <TouchableOpacity>
+      <TouchableOpacity
+       onPress={() => navigation.navigate("Cart")}>
         <View>
           <Text>best Seller</Text>
           <Text style={style.textt}>Rajma chawal[500ml, 1 Box Serves 1]</Text>
@@ -45,7 +51,7 @@ export default List;
 const style = StyleSheet.create({
   viewcontiner: {
     borderWidth: 3,
-    height: 250,
+    height: 280,
     margin: 5,
     borderRadius: 20,
     padding: 1,
@@ -54,7 +60,7 @@ const style = StyleSheet.create({
     height: 100,
     width: 100,
     overflow: "hidden",
-    alignSelf: "flex-end",
+   alignSelf:'flex-end'
   },
   starflex: {
     display: "flex",

@@ -5,16 +5,20 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 const CartView = () => {
   return (
     <View>
+      <View style={style.flex}>
+      <Ionicons name="leaf" />
       <Text style={style.pureveg}>pure veg</Text>
+      </View>
       <Text style={style.maintext}>Italian pizza</Text>
       <View style={style.distance}>
       <Ionicons name="location" />
-      <Text>1km  .  Ambala Locality</Text>
+      <Text  style={style.font}>1km  .  Ambala Locality</Text>
       </View>
       <View style={style.distance}>
       <Ionicons name="time" />
-      <Text>10-15 minutes  .  schedule fot later</Text>
+      <Text style={style.font}>10-15 minutes  .  schedule fot later</Text>
       </View>
+      <View style={style.line}>
       <View style={style.distance}>
       <View  style={style.btn}  >
       <TouchableOpacity>
@@ -25,6 +29,7 @@ const CartView = () => {
          <TouchableOpacity>
             <Text style={style.textop}>Loved by the Delivery partners</Text>
          </TouchableOpacity>
+         </View>
          </View>
          </View>
     </View>
@@ -44,30 +49,50 @@ pureveg:{
 },
 maintext:{
 fontSize:35,
-
-fontWeight:'bold',
+fontFamily:'cursive',
+fontWeight:'condensed',
 margin:7
+
 },
 distance:{
     display:'flex',
     flexDirection:'row',
-    margin:1
+    margin:1,
+   
 },
    btn:{
-    borderColor:'#d9dcd4 ',
+    borderColor:'whitess ',
     borderWidth:3,
     alignSelf:'center',
     justifyContent: "space-between",
-    margin:20,
-    width:160,
+    margin:10,
+    width:180,
     backgroundColor:'#d9dcd4 ',
-    borderRadius:50
+    borderRadius:50,
+    elevation:1,
+    height:30,
+    alignItems:'center'
     
    } ,
    textop:{
     fontSize:12,
     alignSelf:'center',
-    padding:2
+    padding:2,
+  
 
-   }
+   },
+   line:{
+  
+    borderBottomColor:'black',
+    borderBottomWidth:1,
+    borderStyle:'dashed',
+     padding:10
+},
+font:{
+  fontWeight:'bold'
+},
+flex:{
+  display:'flex',
+  flexDirection:'row'
+}
 })
