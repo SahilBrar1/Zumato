@@ -1,6 +1,8 @@
 export const fetchPosts = async () => {
   try {
-    const response = await fetch("https://api.restful-api.dev/objects");
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/comments"
+    );
     const result = await response.json();
     if (!result) {
       throw new Error("Invalid API response");
