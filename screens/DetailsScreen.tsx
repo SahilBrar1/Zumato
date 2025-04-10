@@ -1,15 +1,15 @@
 import React from "react";
 import { View, Text } from "react-native";
-import CartView from "../components/CartView";
-import ViewCart2 from "../components/ViewCart2";
-import ViewCart3 from "../components/ViewCart3";
+import HotelInfo from "../components/HotelInfo";
+import DishFilters from "../components/DishFilters";
+import DishesList from "../components/DishesList";
 
 const DetailsScreen = () => {
   return (
     <View>
-      <CartView />
-      <ViewCart2 />
-      <ViewCart3 />
+      <HotelInfo />
+      <DishFilters />
+      <DishesList />
     </View>
   );
 };
