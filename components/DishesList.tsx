@@ -2,7 +2,7 @@ import { View, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import DishItem from "./DishItemComponent";
 
-const ViewCart3 = () => {
+const DishesList = () => {
   const data = [
     { title: "First Item" },
     { title: "Second Item" },
@@ -25,9 +25,5 @@ const ViewCart3 = () => {
     />
   );
 };
-export default ViewCart3;
-const style = StyleSheet.create({
-  flat: {
-    borderWidth: 5,
-  },
-});
+export default DishesList;
+

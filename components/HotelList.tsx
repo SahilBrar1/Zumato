@@ -11,7 +11,7 @@ const FlatlistComponent = () => {
   const { data, isLoading, isError, fetchStatus } = useQuery({
     queryKey: ["hotels"],
     queryFn: fetchPosts,
-    // staleTime: Infinity,
+    staleTime: Infinity,
   });
   //useQuery
 
@@ -25,8 +25,8 @@ const FlatlistComponent = () => {
         <LottieView
           autoPlay
           style={{
-            width: 200,
-            height: 200,
+            width: 50,
+            height: 50,
             backgroundColor: "#eee",
           }}
           source={require("../assets/Animation.json")}
@@ -44,8 +44,8 @@ const FlatlistComponent = () => {
         <LottieView
           autoPlay
           style={{
-            width: 50,
-            height: 50,
+            width: 20,
+            height: 20,
             backgroundColor: "#eee",
           }}
           source={require("../assets/Animation.json")}
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'white',
-    padding: 10,
   },
   text: {
     fontSize: 60,
