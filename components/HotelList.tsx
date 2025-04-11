@@ -96,9 +96,6 @@ const styles = StyleSheet.create({
     borderColor:'grey',
     padding: 10,
     marginBottom: 10,
-    shadowColor:'black',
-    shadowOpacity:1,
-    shadowRadius:40
     
   
   },
