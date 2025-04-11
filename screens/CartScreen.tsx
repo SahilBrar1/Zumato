@@ -1,19 +1,15 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
-import AddCart from '../components/AddCart'
+import { View, Text, StyleSheet } from "react-native";
+import React from "react";
+import Cart from "../components/Cart";
 
 const CartScreen = () => {
-  return (
-        <AddCart />
-  )
-}
+  return <Cart />;
+};
 
-export default CartScreen
+export default CartScreen;
 
 const styles = StyleSheet.create({
-  container : {
-    padding : 15,
-    
-    
-  }
-})
+  container: {
+    padding: 15,
+  },
+});

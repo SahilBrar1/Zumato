@@ -1,23 +1,38 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  Modal,
+} from "react-native";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { getHeight } from "../utils/Stylehelper";
-
+import { getHeight, getWidth } from "../utils/Stylehelper";
+import { useCart } from "./CartContext";
 
 type ItemProp = {
   title: string;
-}
-const DishItemComponent = ({title} : ItemProp) => {
+};
+const DishItemComponent = ({ title }: ItemProp) => {
+  const [modalVisible, setModalVisible] = useState(false);
   const navigation = useNavigation<StackNavigationProp<any>>();
+
+  const { cart, addToCart, removeFromCart } = useCart();
+
+  const isItemInCart = cart.find((cartItem: any) => cartItem.title === title);
 
   return (
     <View style={style.viewcontiner}>
-      <TouchableOpacity onPress={() => navigation.navigate("Cart")} style={style.touch}>
+      <TouchableOpacity
+        // onPress={() => navigation.navigate("Cart")}
+        style={style.touch}
+      >
         <View style={style.firstView}>
           <Text style={style.bestSeller}>Best Seller</Text>
-          
+
           <Text style={style.titleText}>{title}</Text>
 
           <View style={style.starflex}>
@@ -35,18 +50,61 @@ const DishItemComponent = ({title} : ItemProp) => {
         </View>
 
         <View style={style.secondView}>
-          <Image
-            style={style.img}
-            source={require("../assets/pizzaimg.jpg")}
-          />
+          <Image style={style.img} source={require("../assets/pizzaimg.jpg")} />
+          <View style={style.cartbtn}>
+            <TouchableOpacity
+              onPress={() => removeFromCart({ title, quantity: 1 })}
+              style={{
+                backgroundColor: "white",
+                width: getWidth(20),
+                height: getHeight(30),
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>-</Text>
+            </TouchableOpacity>
+            <Text>{isItemInCart ? isItemInCart.quantity : "ADD"}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                addToCart({ title, quantity: 1 });
+                setModalVisible(true);
+              }}
+              style={{
+                backgroundColor: "white",
+                width: getWidth(20),
+                height: getHeight(30),
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </TouchableOpacity>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={style.modalView}>
+          <TouchableOpacity
+            style={style.viewcart}
+            onPress={() => navigation.navigate("Cart")}
+          >
+            <Text style={style.cartbtn}>View Cart</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };
 
 export default DishItemComponent;
-
 
 const style = StyleSheet.create({
   viewcontiner: {
@@ -60,7 +118,7 @@ const style = StyleSheet.create({
     padding: 10,
   },
   firstView: {
-    flex: 3/2,
+    flex: 3 / 2,
     justifyContent: "space-between",
     // paddingRight: 7,
     // borderWidth: 2,
@@ -97,9 +155,51 @@ const style = StyleSheet.create({
   discountText: {
     color: "red",
     fontWeight: "bold",
-  },  
+  },
   descText: {
     color: "gray",
     marginTop: 2,
+  },
+  cartbtn: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    width: getWidth(80),
+    height: getHeight(30),
+    justifyContent: "space-between",
+    // borderWidth: 1,
+    borderRadius: 5,
+    padding: 5,
+    backgroundColor: "white",
+  },
+  centeredView: {
+    // flex: 1,
+  },
+  modalView: {
+    justifyContent: "center",
+    height: getHeight(100),
+    width: getWidth(330),
+    margin: 20,
+    backgroundColor: "red",
+    borderRadius: 20,
+    // padding: 35,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    color: "white",
+  },
+  viewcart: {
+    justifyContent: "center",
+    alignItems: "center",
+    height: getHeight(35),
   },
 });
