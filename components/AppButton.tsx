@@ -42,7 +42,6 @@ const AppButton = ({ name }: AppButtonProps) => {
           </Text>
           <Ratebutton />
         </View>
-        <Text style={styles.margin}>Flat Rs.150 off above Rs.299</Text>
       </View>
     </TouchableOpacity>
   );
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     color: "black",
     fontWeight: "bold",
     margin: 1,
-    fontFamily:'Nunito'
+    fontFamily: "Nunito",
   },
   img: {
     height: getHeight(200),
@@ -99,6 +98,6 @@ const styles = StyleSheet.create({
   },
   margin: {
     paddingBottom: 9,
-    paddingLeft: 2
+    paddingLeft: 2,
   },
 });

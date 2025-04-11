@@ -4,11 +4,11 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  Modal,
+  // Modal,
 } from "react-native";
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
+// import { useNavigation } from "@react-navigation/native";
+// import { StackNavigationProp } from "@react-navigation/stack";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getHeight, getWidth } from "../utils/Stylehelper";
 import { useCart } from "./CartContext";
@@ -17,8 +17,8 @@ type ItemProp = {
   title: string;
 };
 const DishItemComponent = ({ title }: ItemProp) => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const navigation = useNavigation<StackNavigationProp<any>>();
+  // const [modalVisible, setModalVisible] = useState(false);
+  // const navigation = useNavigation<StackNavigationProp<any>>();
 
   const { cart, addToCart, removeFromCart } = useCart();
 
@@ -68,7 +68,6 @@ const DishItemComponent = ({ title }: ItemProp) => {
             <TouchableOpacity
               onPress={() => {
                 addToCart({ title, quantity: 1 });
-                setModalVisible(true);
               }}
               style={{
                 backgroundColor: "white",
@@ -83,7 +82,7 @@ const DishItemComponent = ({ title }: ItemProp) => {
           </View>
         </View>
       </TouchableOpacity>
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
         visible={modalVisible}
@@ -99,7 +98,7 @@ const DishItemComponent = ({ title }: ItemProp) => {
             <Text style={style.cartbtn}>View Cart</Text>
           </TouchableOpacity>
         </View>
-      </Modal>
+      </Modal> */}
     </View>
   );
 };

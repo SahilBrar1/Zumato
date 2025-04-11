@@ -1,14 +1,22 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  FlatList,
+} from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
-
-const Cart = () => {
+import { useCart } from "./CartContext";
+import CartListComponent from "./CartListComponent";
+const AddCart = () => {
+  // const { cart } = useCart();
+  const cart = [{ title: "First Item" }, { title: "Second Item" }];
   return (
     <View style={styles.container}>
       <View style={styles.offerBanner}>
         <Text style={styles.offerText}> You saved ₹33 on this order</Text>
       </View>
-
       <View style={styles.goldBox}>
         <View>
           <Text style={styles.boldText}>Get Gold for 3 months</Text>
@@ -19,54 +27,56 @@ const Cart = () => {
           <Text style={{ color: "red" }}>ADD</Text>
         </TouchableOpacity>
       </View>
-
-      <View style={styles.itemBox}>
+      {/* <View style={styles.itemBox}>
         <View style={styles.itemRow}>
           <Text style={styles.boldText}>Chicken With 4 Roti</Text>
           <Text style={styles.qtyBox}>- 1 +</Text>
         </View>
         <Text>Edit</Text>
       </View>
-
       <View style={styles.itemBox}>
         <View style={styles.itemRow}>
           <Text style={styles.boldText}>Butter Chicken</Text>
           <Text style={styles.qtyBox}>- 2 +</Text>
         </View>
         <Text>Edit</Text>
-      </View>
-
+      </View> */}
+      <FlatList
+        data={cart}
+        renderItem={({ item }) => <CartListComponent title={item.title} />}
+      />
       <TouchableOpacity>
         <Text style={styles.addMore}>+ Add more items</Text>
       </TouchableOpacity>
-
       <View style={styles.dashedLine}></View>
-
       <View style={styles.noteBox}>
         <Ionicons name="document" />
         <Text style={{ marginLeft: 5 }}>Add a note for the restaurant</Text>
       </View>
-
-      <View style={styles.paymentSection}>
-        <Text style={styles.paymentText}>Pay Using</Text>
+      <View style={styles.offerbanner2}>
+        <Text style={styles.offerText}>
+          {" "}
+          Save Extra By Applying Coupons on Every Order
+        </Text>
+      </View>
+      <View>
+        <View style={styles.paymentSection}></View>
         <TouchableOpacity style={styles.paymentBtn}>
-          <Text style={{ color: "white" }}>Change payment method</Text>
+          <Text style={{ color: "white" }}>Done</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
-export default Cart;
-
+export default AddCart;
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    backgroundColor: "#fdfefe",
+    backgroundColor: "#FDFEFE",
     height: "100%",
   },
   offerBanner: {
-    backgroundColor: "#d6eaf8",
+    backgroundColor: "#D6EAF8",
     padding: 8,
     borderRadius: 5,
     marginBottom: 10,
@@ -76,7 +86,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   goldBox: {
-    backgroundColor: "#fef5e7",
+    backgroundColor: "#FEF5E7",
     padding: 10,
     borderRadius: 8,
     flexDirection: "row",
@@ -131,7 +141,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   paymentSection: {
-    marginTop: "auto",
+    marginTop: 1,
   },
   paymentText: {
     fontWeight: "bold",
@@ -142,5 +152,37 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     alignItems: "center",
+  },
+  offerbanner2: {
+    backgroundColor: "#D6EAF8",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+  },
+  paymentText2: {
+    fontWeight: "bold",
+    marginBottom: 8,
+    color: "blue",
+    fontSize: 15,
+    margin: 10,
+  },
+  offerbanner3: {
+    backgroundColor: "#D6EAF8",
+    borderRadius: 5,
+    marginBottom: 10,
+    height: 160,
+  },
+  border: {
+    borderWidth: 1,
+    padding: 8,
+    margin: 10,
+    borderRadius: 5,
+    height: 40,
+    alignSelf: "flex-start",
+    width: 100,
+    fontWeight: "bold",
+    textAlign: "center",
+    alignContent: "center",
+    marginRight: 250,
   },
 });
