@@ -7,23 +7,27 @@ import {
 } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import Ratebutton from "./Ratebutton";
 
 const CartView = () => {
   return (
     <View style={style.container}>
+      <View style={style.flex}>
       <Text style={style.maintext}>Italian pizza</Text>
+      <Ratebutton/>
+      </View>
       <View style={style.distance}>
-        <Ionicons name="location" />
+        <Ionicons style={style.icon} name="location" />
         <Text style={style.font}>1km . Ambala Locality</Text>
       </View>
       <View style={style.distance}>
-        <Ionicons name="time" />
+        <Ionicons style={style.icon} name="time" />
         <Text style={style.font}>10-15 minutes . schedule fot later</Text>
       </View>
       <ScrollView horizontal={true} style={style.scrollcontainer}>
         <Text style={style.textop}>frequently reordered</Text>
         <Text style={style.textop}>Loved by the Delivery partners</Text>
-        <Text style={style.textop}>Loved by the Delivery partners</Text>
+        <Text style={style.textop}>payment online and get many offers</Text>
       </ScrollView>
     </View>
   );
@@ -32,8 +36,8 @@ const CartView = () => {
 export default CartView;
 const style = StyleSheet.create({
   container: {
-    padding: 15,
-    marginBottom: 5,
+    padding: 10,
+    marginBottom: 10,
     backgroundColor: "#fff",
   },
   scrollcontainer: {
@@ -52,10 +56,10 @@ const style = StyleSheet.create({
     marginLeft: 8,
   },
   maintext: {
-    fontSize: 35,
-    fontFamily: "cursive",
-    fontWeight: "condensed",
-    margin: 7,
+    fontSize: 40,
+    fontFamily: "sans-serif",
+    fontWeight: "bold",
+    // margin: 7,
   },
   distance: {
     display: "flex",
@@ -80,8 +84,8 @@ const style = StyleSheet.create({
     alignSelf: "center",
     padding: 8,
     margin: 5,
-    backgroundColor: "#fadbd8",
-    color: "green",
+    backgroundColor: "#eaecee",
+    color: "black",
     borderRadius: 20,
   },
   line: {
@@ -92,18 +96,18 @@ const style = StyleSheet.create({
   },
   font: {
     fontWeight: "bold",
+    padding:1,
+    color:'grey'
   },
+  flex:{
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'flex-end',
+    justifyContent:'space-between'
+  },
+  icon:{
+    alignSelf:'center',
+    color:'grey'
+  }
 });
 
-// <View style={style.distance}>
-//           <View style={style.btn}>
-//             <TouchableOpacity>
-//               <Text style={style.textop}>frequently reordered</Text>
-//             </TouchableOpacity>
-//           </View>
-//           <View style={style.btn}>
-//             <TouchableOpacity>
-//               <Text style={style.textop}>Loved by the Delivery partners</Text>
-//             </TouchableOpacity>
-//           </View>
-//         </View>

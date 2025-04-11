@@ -59,19 +59,19 @@ const styles = StyleSheet.create({
     borderRadius: 24,
     shadowRadius: 6,
     position: "static",
-
     textShadowColor: "black",
     elevation: 5,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
   },
   appButtonText: {
-    fontSize: 18,
+    fontSize: 24,
     // height: getHeight(23),
     width: getWidth(236),
     color: "black",
     fontWeight: "bold",
     margin: 1,
+    fontFamily:'Nunito'
   },
   img: {
     height: getHeight(200),
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     padding: 7,
   },
   margin: {
-    paddingBottom: 7,
+    paddingBottom: 9,
     paddingLeft: 2
   },
 });

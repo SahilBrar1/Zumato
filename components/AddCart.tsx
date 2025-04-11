@@ -47,14 +47,25 @@ const AddCart = () => {
         <Ionicons name="document" />
         <Text style={{marginLeft:5}}>Add a note for the restaurant</Text>
       </View>
-
+      
+      <View style={styles.offerbanner2}>
+        <Text style={styles.offerText}> Save Extra By Applying Coupons on Every Order</Text>
+       
+      </View>
+      <View>
+      <View style={styles.offerbanner3}>
+      <Text style={styles.paymentText2}>PAY USING:</Text>
+      <View  >
+     <Text style={styles.border}>Cash On </Text>
+     <Text style={styles.border}>Pay Online</Text>
+     </View>
       <View style={styles.paymentSection}>
-        <Text style={styles.paymentText}>Pay Using</Text>
+      </View>
         <TouchableOpacity style={styles.paymentBtn}>
-          <Text style={{color:'white'}}>Change payment method</Text>
+          <Text style={{color:'white'}}>Done</Text>
         </TouchableOpacity>
       </View>
-
+      </View>
     </View>
   );
 };
@@ -133,7 +144,7 @@ const styles = StyleSheet.create({
     marginBottom:20
   },
   paymentSection:{
-    marginTop:'auto',
+    marginTop:100,
   },
   paymentText:{
     fontWeight:'bold',
@@ -144,5 +155,41 @@ const styles = StyleSheet.create({
     padding:10,
     borderRadius:5,
     alignItems:'center'
+  },
+  offerbanner2:{
+    backgroundColor:'#d6eaf8',
+    padding:10,
+    borderRadius:5,
+    marginBottom:10,
+  },
+  paymentText2:{
+    fontWeight:'bold',
+    marginBottom:8,
+    color:'blue',
+    fontSize:15,
+    margin:10
+  
+  },
+  offerbanner3:{
+    backgroundColor:'#d6eaf8',
+  
+    borderRadius:5,
+    marginBottom:10,
+    height:160
+  
+  },
+  border:{
+    borderWidth:1,
+    padding:8,
+    margin:10,
+    borderRadius:5,
+    height:40,
+    alignSelf:'flex-start',
+    width:100,
+    fontWeight:'bold',
+    textAlign:'center',
+    alignContent:'center',
+    marginRight:250
   }
+  
 })

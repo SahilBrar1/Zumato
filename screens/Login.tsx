@@ -8,6 +8,7 @@ import {
   Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getHeight, getWidth } from "../utils/Stylehelper";
 
 const Login = ({ navigation }: any) => {
   const validNumber = "123456789";
@@ -60,39 +61,39 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   image: {
-    width: "100%",
-    height: 250,
+    width: '100%',
+    height:getHeight(350),
     resizeMode: "cover",
-    marginBottom: 20,
+    marginBottom: getWidth(20),
   },
   title: {
-    fontSize: 20,
+    fontSize: getHeight(28),
     fontWeight: "bold",
     textAlign: "center",
-    marginBottom: 20,
+    marginBottom: getHeight(20),
   },
   input: {
-    borderWidth: 1,
+    borderWidth: getWidth(1),
     borderColor: "#ccc",
-    borderRadius: 8,
+    borderRadius: getHeight(8),
     padding: 12,
     marginBottom: 15,
   },
   button: {
     backgroundColor: "red",
     padding: 15,
-    borderRadius: 8,
-    // marginTop: Auto,
+    borderRadius: getHeight(8),
+  
   },
   buttonText: {
     color: "#fff",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: getHeight(16),
   },
   termsText: {
-    marginTop: 15,
+    marginTop: getHeight(200),
     textAlign: "center",
-    fontSize: 12,
+    fontSize: getHeight(12),
     color: "#777",
   },
   log: {
@@ -101,3 +102,4 @@ const styles = StyleSheet.create({
 
   },
 });
+

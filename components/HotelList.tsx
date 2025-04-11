@@ -93,8 +93,12 @@ const styles = StyleSheet.create({
   borderRadius:10,
     margin: 12,
     borderWidth: 1,
+    borderColor:'grey',
     padding: 10,
     marginBottom: 10,
+    shadowColor:'black',
+    shadowOpacity:1,
+    shadowRadius:40
     
   
   },
