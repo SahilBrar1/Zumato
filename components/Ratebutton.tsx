@@ -1,6 +1,7 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { getHeight, getWidth } from "../utils/Stylehelper";
 
 const Ratebutton = () => {
   return (
@@ -13,7 +14,7 @@ const Ratebutton = () => {
   );
 };
 
-export default Ratebutton;
+export default Ratebutton;  
 const styles = StyleSheet.create({
   rate: {
     display:'flex',
@@ -23,14 +24,12 @@ const styles = StyleSheet.create({
     justifyContent:'center',
     alignItems: "center",
     verticalAlign:'top',
-    width: 50,
-    height: 20,
+    width: getWidth(43),
+    height: getHeight(24),
     borderRadius: 5,
     padding:2
-    
-    
   },
   color:{
-    color:'white'
+    color:'white',
   }
 });

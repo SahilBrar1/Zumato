@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View } from "react-native";
 import AppButton from "./AppButton";
+import { getHeight, getWidth } from "../utils/Stylehelper";
 
 type ItemProps = { name: string; id?: number };
 
@@ -17,8 +18,6 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     justifyContent: "center",
-    padding: 10,
-    
-    
-  },
+    padding: getWidth(10),
+  },  
 });

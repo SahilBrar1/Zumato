@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { getHeight, getWidth } from "../utils/Stylehelper";
 
 interface AppButtonProps {
   onPress?: () => void;
@@ -19,27 +20,31 @@ const AppButton = ({ name }: AppButtonProps) => {
       style={styles.appButtonContainer}
       onPress={() => navigation.navigate("Details")}
     >
-      
-        <Image
-          style={styles.img}
-          source={require("../assets/pizzaimg.jpg")}
-          // resizeMode="cover"
-        />
-    <View style={styles.padding}>
-      <View style={styles.time}>
-        <Ionicons name="time" />
-        
-        <Text>23 min  </Text>
-        <Text>  2.2km</Text>
-      </View>
-      <View style={styles.textflex}>
-        <Text style={styles.appButtonText}>{name}</Text>
-        <Ratebutton />
-      </View>
-      <Text style={styles.margin}>Flat Rs. 150 off above Rs. 299</Text>
+      <Image
+        style={styles.img}
+        source={require("../assets/pizzaimg.jpg")}
+        // resizeMode="cover"
+      />
+      <View style={styles.padding}>
+        <View style={styles.time}>
+          <Ionicons name="time" />
+
+          <Text>23 min </Text>
+          <Text> 2.2km</Text>
+        </View>
+        <View style={styles.textflex}>
+          <Text
+            style={styles.appButtonText}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
+            {name}
+          </Text>
+          <Ratebutton />
+        </View>
+        <Text style={styles.margin}>Flat Rs.150 off above Rs.299</Text>
       </View>
     </TouchableOpacity>
-    
   );
 };
 
@@ -47,31 +52,29 @@ export default AppButton;
 
 const styles = StyleSheet.create({
   appButtonContainer: {
-    backgroundColor:'white',
-  fontFamily: 'Georgia, serif',
-    height: 280,
-    // // borderWidth:1,
-    shadowOpacity:1,
-    //  borderColor:'white',
-    borderRadius:12,
- shadowRadius:6,
- position:'static',
- 
- textShadowColor:'black',
- elevation:5,
-    shadowColor:'black',
-    shadowOffset:{width:0, height:4}
+    backgroundColor: "white",
+    fontFamily: "Georgia, serif",
+    height: getHeight(290),
+    shadowOpacity: 1,
+    borderRadius: 24,
+    shadowRadius: 6,
+    position: "static",
+
+    textShadowColor: "black",
+    elevation: 5,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 4 },
   },
   appButtonText: {
-    fontSize: 23,
+    fontSize: 18,
+    // height: getHeight(23),
+    width: getWidth(236),
     color: "black",
     fontWeight: "bold",
-    margin:1
-    
-    
+    margin: 1,
   },
   img: {
-    height: 200,
+    height: getHeight(200),
     width: "100%",
     overflow: "hidden",
     borderTopLeftRadius: 20,
@@ -80,8 +83,8 @@ const styles = StyleSheet.create({
   time: {
     display: "flex",
     flexDirection: "row",
-    marginTop:4,
-    alignItems:'center'
+    marginTop: 4,
+    alignItems: "center",
   },
   dot: {
     fontWeight: "bold",
@@ -91,10 +94,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-  padding:{
-    padding:7
+  padding: {
+    padding: 7,
   },
-  margin:{
-  paddingBottom:7
-  }
+  margin: {
+    paddingBottom: 7,
+    paddingLeft: 2
+  },
 });
