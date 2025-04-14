@@ -10,8 +10,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCart } from "./CartContext";
 import CartListComponent from "./CartListComponent";
 const AddCart = () => {
-  // const { cart } = useCart();
-  const cart = [{ title: "First Item" }, { title: "Second Item" }];
+  const { cart } = useCart();
+  // const cart = [{ title: "First Item" }, { title: "Second Item" }];
   return (
     <View style={styles.container}>
       <View style={styles.offerBanner}>
@@ -27,23 +27,12 @@ const AddCart = () => {
           <Text style={{ color: "red" }}>ADD</Text>
         </TouchableOpacity>
       </View>
-      {/* <View style={styles.itemBox}>
-        <View style={styles.itemRow}>
-          <Text style={styles.boldText}>Chicken With 4 Roti</Text>
-          <Text style={styles.qtyBox}>- 1 +</Text>
-        </View>
-        <Text>Edit</Text>
-      </View>
-      <View style={styles.itemBox}>
-        <View style={styles.itemRow}>
-          <Text style={styles.boldText}>Butter Chicken</Text>
-          <Text style={styles.qtyBox}>- 2 +</Text>
-        </View>
-        <Text>Edit</Text>
-      </View> */}
+
       <FlatList
         data={cart}
-        renderItem={({ item }) => <CartListComponent title={item.title} />}
+        renderItem={({ item }) => (
+          <CartListComponent title={item.title} quantity={item.quantity} />
+        )}
       />
       <TouchableOpacity>
         <Text style={styles.addMore}>+ Add more items</Text>

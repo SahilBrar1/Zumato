@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     justifyContent: "center",
-    padding: getWidth(8),
-  },  
+    padding: getWidth(12),
+  },
 });

@@ -1,17 +1,13 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import AppButton from "./AppButton";
-
-import { useState } from "react";
 import CartItem from "./CartItem";
 
-type ItemProps = { title: string; id?: number };
+type ItemProps = { title: string; quantity?: number };
 
-const CartListComponent = ({ title }: ItemProps) => {
-  let [color, setColor] = useState("#FF6347");
+const CartListComponent = ({ title, quantity }: ItemProps) => {
   return (
     <View style={styles.screenContainer}>
-      <CartItem title={title} color={color} />
+      <CartItem title={title} quantity={quantity} />
     </View>
   );
 };

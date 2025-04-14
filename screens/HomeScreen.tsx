@@ -8,7 +8,18 @@ const HomeScreen = ({ navigation }: any) => {
   return (
     <>
       <HotelList />
-      <Text>Network Status: {isConnected ? "Online" : "Offline"}</Text>
+      {!isConnected && (
+        <Text
+          style={{
+            textAlign: "center",
+            fontSize: 8,
+            marginTop: 5,
+            color: "red",
+          }}
+        >
+          No Internet Connection
+        </Text>
+      )}
     </>
   );
 };
