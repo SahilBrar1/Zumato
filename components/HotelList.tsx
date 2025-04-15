@@ -1,27 +1,41 @@
 import { View, FlatList, Text, StyleSheet, TextInput } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ItemComponent from "./ItemComponent";
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPosts } from "../apis/api";
 import LottieView from "lottie-react-native";
 import colors from "../tokens/colors";
 
 const FlatlistComponent = () => {
+  const [query, setQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
   //useQuery
-  const { data, isLoading, isError, fetchStatus } = useQuery({
+  const {
+    data: allData,
+    isLoading,
+    isError,
+    fetchStatus,
+  } = useQuery({
     queryKey: ["hotels"],
     queryFn: fetchPosts,
     staleTime: Infinity,
   });
   //useQuery
 
-  const [query, setQuery] = useState("");
-  const [fullData, setFullData] = useState(data);
-
-  //useState
-  const [name, setName] = useState("");
-  //useState
+  useEffect(() => {
+    if (allData) {
+      if (query.trim() === "") {
+        setFilteredData(allData);
+      } else {
+        const formattedQuery = query.toLowerCase();
+        const filteredData = allData.filter((item: any) =>
+          item.name.toLowerCase().includes(formattedQuery)
+        );
+        setFilteredData(filteredData);
+      }
+    }
+  }, [allData, query]);
+  //useEffect
 
   if (isLoading) {
     return (
@@ -57,65 +71,17 @@ const FlatlistComponent = () => {
       </View>
     );
   }
-  //handleSearch
-  const handleSearch = (text) => {
-    const formattedQuery = text.toLowerCase();
-    const filteredData = filter(fullData, (user) => {
-      return contains(user, formattedQuery);
-    });
-    setData(filteredData);
-    setQuery(text);
-  };
 
-  const contains = ({ name, email }, query) => {
-    const { first, last } = name;
-
-    if (
-      first.includes(query) ||
-      last.includes(query) ||
-      email.includes(query)
-    ) {
-      return true;
-    }
-
-    return false;
-  };
-  //handleSearch
-  //renderHeader
-  function renderHeader() {
-    return (
-      <View
-        style={{
-          backgroundColor: "#fff",
-          padding: 10,
-          marginVertical: 10,
-          borderRadius: 20,
-        }}
-      >
-        <TextInput
-          autoCapitalize="none"
-          autoCorrect={false}
-          clearButtonMode="always"
-          value={query}
-          onChangeText={(queryText) => handleSearch(queryText)}
-          placeholder="Search"
-          style={{ backgroundColor: "#fff", paddingHorizontal: 20 }}
-        />
-      </View>
-    );
-  }
-  //renderHeader
   return (
     <View style={styles.container}>
-      {/* <TextInput
-        placeholder="Search Restaurant name and dishes here..."
-        value={name}
-        onChangeText={setName}
+      <TextInput
+        value={query}
+        onChangeText={(queryText) => setQuery(queryText)}
+        placeholder="Search"
         style={styles.input}
-      /> */}
+      />
       <FlatList
-        ListHeaderComponent={renderHeader}
-        data={data}
+        data={filteredData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ItemComponent name={item.name} />}
         initialNumToRender={10}
