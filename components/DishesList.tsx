@@ -14,7 +14,7 @@ const DishesList = () => {
     { title: "eight Item" },
     { title: " nine Item" },
     { title: "ten Item" },
-    { title: "Second Item" },
+    { title: "eleven Item" },
     { title: "Third Item" },
   ];
 
@@ -27,3 +27,8 @@ const DishesList = () => {
 };
 export default DishesList;
 
+const styles = StyleSheet.create({
+  screenContainer: {
+    height: "100%",
+  },
+});

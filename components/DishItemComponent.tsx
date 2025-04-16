@@ -1,32 +1,48 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  // Modal,
-} from "react-native";
-import React, { useState } from "react";
-// import { useNavigation } from "@react-navigation/native";
-// import { StackNavigationProp } from "@react-navigation/stack";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { getHeight, getWidth } from "../utils/Stylehelper";
 import { useCart } from "./CartContext";
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 type ItemProp = {
   title: string;
 };
 const DishItemComponent = ({ title }: ItemProp) => {
-  // const [modalVisible, setModalVisible] = useState(false);
-  // const navigation = useNavigation<StackNavigationProp<any>>();
-
   const { cart, addToCart, removeFromCart } = useCart();
+
+  //animation logic
+  const translateY = useSharedValue(-1000);
+  const opacity = useSharedValue(0);
+
+  useEffect(() => {
+    translateY.value = withTiming(0, {
+      duration: 10000,
+      easing: Easing.out(Easing.ease),
+    });
+    opacity.value = withTiming(1, {
+      duration: 500,
+    });
+  }, []);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+      opacity: opacity.value,
+    };
+  });
+  //animation logic
 
   const isItemInCart = cart.find((cartItem: any) => cartItem.title === title);
 
   return (
-    <View style={style.viewcontiner}>
-      <TouchableOpacity
+    <Animated.View style={[style.viewcontiner, animatedStyle]}>
+      <View
         // onPress={() => navigation.navigate("Cart")}
         style={style.touch}
       >
@@ -81,25 +97,8 @@ const DishItemComponent = ({ title }: ItemProp) => {
             </TouchableOpacity>
           </View>
         </View>
-      </TouchableOpacity>
-      {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={style.modalView}>
-          <TouchableOpacity
-            style={style.viewcart}
-            onPress={() => navigation.navigate("Cart")}
-          >
-            <Text style={style.cartbtn}>View Cart</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal> */}
-    </View>
+      </View>
+    </Animated.View>
   );
 };
 

@@ -1,55 +1,76 @@
-import { View, Image, StyleSheet, TouchableOpacity, Text } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  SafeAreaView,
+  StatusBar,
+} from "react-native";
 import React from "react";
 import { getHeight, getWidth } from "../utils/Stylehelper";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import colors from "../tokens/colors";
 
 const DetailHeader = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();
 
   return (
-    <View style={styles.container}>
-      <Image source={require("../assets/logo.png")} style={styles.logo} />
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Image style={styles.logo} source={require("../assets/logo.png")} />
 
-      <TouchableOpacity
-        style={styles.cartButton}
-        onPress={() => navigation.navigate("Cart")}
-      >
-        <Text style={styles.cartText}>View Cart</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity
+          style={styles.cartButton}
+          onPress={() => navigation.navigate("Cart")}
+        >
+          <Text style={styles.text}>View Cart</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default DetailHeader;
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    // paddingHorizontal: getWidth(15),
-    paddingVertical: getHeight(10),
+  safeArea: {
     backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    paddingTop: StatusBar.currentHeight,
+  },
+  container: {
+    height: 60,
+    flexDirection: "row",
+    alignItems: "center",
+    elevation: 3,
+    backgroundColor: "white",
+    padding: 20,
+    justifyContent: "space-between",
   },
   logo: {
-    width: getWidth(30),
-    height: getHeight(30),
-    resizeMode: "contain",
+    width: 30,
+    height: 30,
+    marginRight: 10,
+    marginLeft: 10,
   },
   cartButton: {
-    marginLeft: getWidth(180),
-    backgroundColor: "red",
-    paddingHorizontal: getWidth(15),
-    paddingVertical: getHeight(5),
-    borderRadius: 10,
+    marginRight: 10,
+    backgroundColor: colors.btnBackground,
+    height: getHeight(35),
+    width: getWidth(85),
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "flex-end",
+    borderRadius: 10,
   },
-  cartText: {
-    color: "#fff",
-    fontWeight: "bold",
+  text: {
+    color: colors.white,
     fontSize: 14,
+    fontWeight: "bold",
   },
 });
+
+// shadowColor: "#000",
+//     shadowOpacity: 0.05,
+//     shadowRadius: 3,
+//     shadowOffset: { width: 0, height: 2 },
+//     justifyContent: "space-between",

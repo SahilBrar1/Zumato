@@ -13,8 +13,8 @@ const CartView = () => {
   return (
     <View style={style.container}>
       <View style={style.flex}>
-      <Text style={style.maintext}>Italian pizza</Text>
-      <Ratebutton/>
+        <Text style={style.maintext}>Italian pizza</Text>
+        <Ratebutton />
       </View>
       <View style={style.distance}>
         <Ionicons style={style.icon} name="location" />
@@ -39,6 +39,7 @@ const style = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
     backgroundColor: "#fff",
+    elevation: 3,
   },
   scrollcontainer: {
     display: "flex",
@@ -96,18 +97,17 @@ const style = StyleSheet.create({
   },
   font: {
     fontWeight: "bold",
-    padding:1,
-    color:'grey'
+    padding: 1,
+    color: "grey",
   },
-  flex:{
-    display:'flex',
-    flexDirection:'row',
-    alignItems:'flex-end',
-    justifyContent:'space-between'
+  flex: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
   },
-  icon:{
-    alignSelf:'center',
-    color:'grey'
-  }
+  icon: {
+    alignSelf: "center",
+    color: "grey",
+  },
 });
-

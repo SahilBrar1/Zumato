@@ -101,7 +101,6 @@ export default FlatlistComponent;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.backgroundBlueExtraLight,
   },
   text: {
     fontSize: 60,

@@ -9,6 +9,9 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCart } from "./CartContext";
 import CartListComponent from "./CartListComponent";
+
+import { getHeight } from "../utils/Stylehelper";
+
 const AddCart = () => {
   const { cart } = useCart();
   // const cart = [{ title: "First Item" }, { title: "Second Item" }];
@@ -27,13 +30,14 @@ const AddCart = () => {
           <Text style={{ color: "red" }}>ADD</Text>
         </TouchableOpacity>
       </View>
-
-      <FlatList
-        data={cart}
-        renderItem={({ item }) => (
-          <CartListComponent title={item.title} quantity={item.quantity} />
-        )}
-      />
+      <View style={styles.list}>
+        <FlatList
+          data={cart}
+          renderItem={({ item }) => (
+            <CartListComponent title={item.title} quantity={item.quantity} />
+          )}
+        />
+      </View>
       <TouchableOpacity>
         <Text style={styles.addMore}>+ Add more items</Text>
       </TouchableOpacity>
@@ -61,7 +65,6 @@ export default AddCart;
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    backgroundColor: "#FDFEFE",
     height: "100%",
   },
   offerBanner: {
@@ -173,5 +176,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignContent: "center",
     marginRight: 250,
+  },
+  list: {
+    height: getHeight(250),
+    width: "100%",
   },
 });

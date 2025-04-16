@@ -10,18 +10,24 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getHeight, getWidth } from "../utils/Stylehelper";
 import colors from "../tokens/colors";
+import { useRef, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-const Login = ({ navigation }: any) => {
-  const validNumber = "123456789";
+const Login = () => {
+  const userIdref = useRef(null);
+  const navigation = useNavigation<StackNavigationProp<any>>();
+  const [userId, setUserId] = useState("");
 
-  let userNumber = "";
+  const handleLogin = async () => {
+    const storedUserId = "1234567890";
 
-  const handleLogin = () => {
-    if (userNumber === validNumber) {
-      // Alert.alert('Success', 'Login Successful!');
-      navigation.navigate("Home");
+    if (userId === storedUserId) {
+      await AsyncStorage.setItem("isLoggedIn", "true");
+      navigation.replace("Home");
     } else {
-      Alert.alert("Invalid Number", "Please enter correct number");
+      Alert.alert("Invalid User ID", "Please enter a valid user ID.");
     }
   };
 
@@ -37,10 +43,12 @@ const Login = ({ navigation }: any) => {
         <Text style={styles.log}>Log in or Sign up</Text>
         <TextInput
           style={styles.input}
+          ref={userIdref}
+          value={userId}
+          onChangeText={(text) => setUserId(text)}
           placeholder="Enter Phone Number"
           keyboardType="phone-pad"
           maxLength={10}
-          onChangeText={(text) => (userNumber = text)}
         />
         {/* <Mybutton onPress={() => navigation.navigate("Home")} /> */}
         <TouchableOpacity style={styles.button} onPress={handleLogin}>
