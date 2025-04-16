@@ -8,6 +8,7 @@ import { getHeight } from "../utils/Stylehelper";
 const DetailsScreen = () => {
   return (
     <View style={styles.container}>
+      
       <HotelInfo />
       {/* <DishFilters /> */}
       <DishesList />

@@ -2,11 +2,13 @@ import React from "react";
 import { useNetInfo } from "../components/NetInfoContext";
 import { Text } from "react-native";
 import HotelList from "../components/HotelList";
+import Header from "../components/Header";
 
 const HomeScreen = ({ navigation }: any) => {
   const { isConnected } = useNetInfo();
   return (
     <>
+      <Header title="Home" />
       <HotelList />
       {!isConnected && (
         <Text
