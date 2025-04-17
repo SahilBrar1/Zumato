@@ -22,6 +22,7 @@ const Header: React.FC<HeaderProps> = ({
   showBackButton = false,
   onBackPress,
 }) => {
+  console.log("I am Header AND I rendered again");
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>

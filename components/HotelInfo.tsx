@@ -10,6 +10,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 
 const CartView = () => {
+  console.log("I am CartView AND I rendered again");
   return (
     <View style={style.container}>
       <View style={style.flex}>

@@ -22,6 +22,13 @@ const DishesList = () => {
     <FlatList
       data={data}
       renderItem={({ item }) => <DishItem title={item.title} />}
+      initialNumToRender={2}
+      maxToRenderPerBatch={3}
+      windowSize={3}
+      // removeClippedSubviews={true}
+      // onEndReached={fetchNextPage}
+      onEndReachedThreshold={0.5}
+      // ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
     />
   );
 };

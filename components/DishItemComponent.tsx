@@ -15,6 +15,7 @@ type ItemProp = {
 };
 const DishItemComponent = ({ title }: ItemProp) => {
   const { cart, addToCart, removeFromCart } = useCart();
+  console.log("DishItemComponent rendered again");
 
   //animation logic
   const translateY = useSharedValue(-1000);
@@ -22,7 +23,7 @@ const DishItemComponent = ({ title }: ItemProp) => {
 
   useEffect(() => {
     translateY.value = withTiming(0, {
-      duration: 10000,
+      duration: 1000,
       easing: Easing.out(Easing.ease),
     });
     opacity.value = withTiming(1, {
@@ -42,10 +43,7 @@ const DishItemComponent = ({ title }: ItemProp) => {
 
   return (
     <Animated.View style={[style.viewcontiner, animatedStyle]}>
-      <View
-        // onPress={() => navigation.navigate("Cart")}
-        style={style.touch}
-      >
+      <View style={style.touch}>
         <View style={style.firstView}>
           <Text style={style.bestSeller}>Best Seller</Text>
 

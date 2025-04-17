@@ -1,5 +1,5 @@
 import { View, FlatList, Text, StyleSheet, TextInput } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import ItemComponent from "./ItemComponent";
 import { useQuery } from "@tanstack/react-query";
 import { fetchRestaurants } from "../apis/api";
@@ -9,7 +9,12 @@ const FlatlistComponent = () => {
   const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
 
-  const { data: allData, isLoading, isError, fetchStatus } = useQuery({
+  const {
+    data: allData,
+    isLoading,
+    isError,
+    fetchStatus,
+  } = useQuery({
     queryKey: ["hotels"],
     queryFn: fetchRestaurants,
     staleTime: Infinity,
@@ -27,6 +32,7 @@ const FlatlistComponent = () => {
       }
     }
   }, [allData, query]);
+  console.log("FlatlistComponent rendered again");
 
   if (isLoading || fetchStatus === "fetching") {
     return (
@@ -44,16 +50,23 @@ const FlatlistComponent = () => {
 
   return (
     <View style={styles.container}>
-      <TextInput
+      {/* <TextInput
         value={query}
         onChangeText={setQuery}
         placeholder="Search"
         style={styles.input}
-      />
+      /> */}
       <FlatList
         data={filteredData}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ItemComponent restaurant={item} />}
+        initialNumToRender={1}
+        maxToRenderPerBatch={3}
+        windowSize={2}
+        // removeClippedSubviews={true}
+        // onEndReached={fetchNextPage}
+        // onEndReachedThreshold={0.5}
+        // ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
       />
     </View>
   );

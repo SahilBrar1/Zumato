@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import { StyleSheet } from "react-native";
 import AppButton from "./AppButton";
 import Animated, {
@@ -16,9 +16,13 @@ const ItemComponent = ({ restaurant }: ItemProps) => {
   const opacity = useSharedValue(0);
 
   useEffect(() => {
-    translateY.value = withTiming(0, { duration: 500, easing: Easing.out(Easing.ease) });
+    translateY.value = withTiming(0, {
+      duration: 500,
+      easing: Easing.out(Easing.ease),
+    });
     opacity.value = withTiming(1, { duration: 500 });
   }, []);
+  console.log("ItemComponent rendered again");
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
@@ -38,7 +42,7 @@ const ItemComponent = ({ restaurant }: ItemProps) => {
   );
 };
 
-export default ItemComponent;
+export default memo(ItemComponent);
 
 const styles = StyleSheet.create({
   screenContainer: {

@@ -7,6 +7,8 @@ export const fetchRestaurants = async () => {
     if (!result) {
       throw new Error("Invalid API response");
     }
+    console.log("menu: ", result.menu);
+
     return result;
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -10,11 +10,11 @@ interface AppButtonProps {
   photo: string;
   deliveryTime: string;
   distance: string;
-  menu: object;
 }
 
-const AppButton = ({ name, photo, deliveryTime, distance, menu }: AppButtonProps) => {
+const AppButton = ({ name, photo, deliveryTime, distance }: AppButtonProps) => {
   const navigation = useNavigation();
+  console.log("I am AppButton AND I rendered again");
 
   return (
     <TouchableOpacity
@@ -26,11 +26,13 @@ const AppButton = ({ name, photo, deliveryTime, distance, menu }: AppButtonProps
       <View style={styles.padding}>
         <View style={styles.time}>
           <Ionicons name="time" />
-          <Text>{deliveryTime} </Text>
-          <Text>{distance}</Text>
+          <Text>{deliveryTime} min</Text>
+          <Text style={{ marginLeft: 4 }}>{distance} km</Text>
         </View>
         <View style={styles.textflex}>
-          <Text numberOfLines={1} style={styles.appButtonText}>{name}</Text>
+          <Text numberOfLines={1} style={styles.appButtonText}>
+            {name}
+          </Text>
           <Ratebutton />
         </View>
       </View>

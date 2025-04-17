@@ -15,6 +15,7 @@ import colors from "../tokens/colors";
 
 const DetailHeader = () => {
   const navigation = useNavigation<StackNavigationProp<any>>();
+  console.log("I am DetailHeader AND I rendered again");
 
   return (
     <SafeAreaView style={styles.safeArea}>

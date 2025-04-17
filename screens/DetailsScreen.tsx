@@ -6,7 +6,9 @@ import DishesList from "../components/DishesList";
 import { getHeight } from "../utils/Stylehelper";
 import DetailHeader from "../components/DetailHeader";
 
-const DetailsScreen = (name: string) => {
+const DetailsScreen = () => {
+  console.log("I am DetailsScreen AND I rendered again");
+
   return (
     <View style={{ height: "100%" }}>
       <DetailHeader />
@@ -18,9 +20,6 @@ const DetailsScreen = (name: string) => {
 };
 
 export default DetailsScreen;
-
-
-
 
 // import React from "react";
 // import { View, ScrollView } from "react-native";

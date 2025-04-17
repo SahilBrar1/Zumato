@@ -17,6 +17,8 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cart, setCart] = useState<CartItem[]>([]);
 
   const addToCart = (item: CartItem) => {
+    console.log("mai plus mai chla hun");
+
     setCart((prevCart) => {
       const existingItem = prevCart.find((i) => i.title === item.title);
       if (existingItem) {
@@ -32,6 +34,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const removeFromCart = (item: CartItem) => {
+    console.log("mai minus mai chla hun");
     setCart((prevCart) => {
       const existingItem = prevCart.find((i) => i.title === item.title);
       if (existingItem) {
