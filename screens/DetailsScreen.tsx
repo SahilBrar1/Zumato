@@ -18,3 +18,49 @@ const DetailsScreen = (name: string) => {
 };
 
 export default DetailsScreen;
+
+
+
+
+// import React from "react";
+// import { View, ScrollView } from "react-native";
+// import HotelInfo from "../components/HotelInfo";
+// import DishFilters from "../components/DishFilters";
+// import DishesList from "../components/DishesList";
+// import DetailHeader from "../components/DetailHeader";
+
+// type MenuItem = {
+//   id: string;
+//   title: string;
+//   description?: string;
+//   price?: number;
+//   image?: string;
+//   rating?: number;
+//   discount?: string;
+// };
+
+// type DetailsScreenProps = {
+//   route: {
+//     params: {
+//       name: string;
+//       menu: MenuItem[];
+//     };
+//   };
+// };
+
+// const DetailsScreen = ({ route }: DetailsScreenProps) => {
+//   const { name, menu } = route.params;
+
+//   return (
+//     <View style={{ flex: 1, backgroundColor: "#fff" }}>
+//       <DetailHeader />
+//       <ScrollView showsVerticalScrollIndicator={false}>
+//         <HotelInfo />
+//         {/* <DishFilters /> */}
+//         <DishesList menu={menu} />
+//       </ScrollView>
+//     </View>
+//   );
+// };
+
+// export default DetailsScreen;

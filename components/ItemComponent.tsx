@@ -1,43 +1,44 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import AppButton from "./AppButton";
-import { getHeight, getWidth } from "../utils/Stylehelper";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
   Easing,
 } from "react-native-reanimated";
+import { getWidth } from "../utils/Stylehelper";
 
-type ItemProps = { name: string; id?: number };
+type ItemProps = { restaurant: any };
 
-const Itemcomponent = ({ name }: ItemProps) => {
+const ItemComponent = ({ restaurant }: ItemProps) => {
   const translateY = useSharedValue(-50);
   const opacity = useSharedValue(0);
 
   useEffect(() => {
-    translateY.value = withTiming(0, {
-      duration: 500,
-      easing: Easing.out(Easing.ease),
-    });
-    opacity.value = withTiming(1, {
-      duration: 500,
-    });
+    translateY.value = withTiming(0, { duration: 500, easing: Easing.out(Easing.ease) });
+    opacity.value = withTiming(1, { duration: 500 });
   }, []);
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: translateY.value }],
-      opacity: opacity.value,
-    };
-  });
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: translateY.value }],
+    opacity: opacity.value,
+  }));
+
   return (
     <Animated.View style={[styles.screenContainer, animatedStyle]}>
-      <AppButton name={name} />
+      <AppButton
+        name={restaurant.name}
+        photo={restaurant.avatar}
+        menu={restaurant.menu}
+        deliveryTime={restaurant.deliveryTime}
+        distance={restaurant.distance}
+      />
     </Animated.View>
   );
 };
-export default Itemcomponent;
+
+export default ItemComponent;
 
 const styles = StyleSheet.create({
   screenContainer: {
