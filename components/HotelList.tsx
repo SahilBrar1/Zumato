@@ -4,10 +4,19 @@ import ItemComponent from "./ItemComponent";
 import { useQuery } from "@tanstack/react-query";
 import { fetchRestaurants } from "../apis/api";
 import LottieView from "lottie-react-native";
+import Header from "./LocationHeader";
+import CategoryList from "./CategoryList";
+
+const MainHeader = ({ searchText, setSearchText }: any) => (
+  <>
+    <Header searchText={searchText} setSearchText={setSearchText} />
+    <CategoryList />
+  </>
+);
 
 const FlatlistComponent = () => {
-  const [query, setQuery] = useState("");
   const [filteredData, setFilteredData] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const {
     data: allData,
@@ -22,16 +31,16 @@ const FlatlistComponent = () => {
 
   useEffect(() => {
     if (allData) {
-      if (query.trim() === "") setFilteredData(allData);
+      if (searchText.trim() === "") setFilteredData(allData);
       else {
-        const formattedQuery = query.toLowerCase();
+        const formattedQuery = searchText.toLowerCase();
         const filtered = allData.filter((item: any) =>
           item.name.toLowerCase().includes(formattedQuery)
         );
         setFilteredData(filtered);
       }
     }
-  }, [allData, query]);
+  }, [allData, searchText]);
   console.log("FlatlistComponent rendered again");
 
   if (isLoading || fetchStatus === "fetching") {
@@ -50,19 +59,18 @@ const FlatlistComponent = () => {
 
   return (
     <View style={styles.container}>
-      {/* <TextInput
-        value={query}
-        onChangeText={setQuery}
-        placeholder="Search"
-        style={styles.input}
-      /> */}
       <FlatList
         data={filteredData}
+        ListHeaderComponent={
+          <MainHeader searchText={searchText} setSearchText={setSearchText} />
+        }
+        stickyHeaderIndices={[0]}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <ItemComponent restaurant={item} />}
         initialNumToRender={1}
         maxToRenderPerBatch={3}
         windowSize={2}
+
         // removeClippedSubviews={true}
         // onEndReached={fetchNextPage}
         // onEndReachedThreshold={0.5}
