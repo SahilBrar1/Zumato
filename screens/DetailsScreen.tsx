@@ -1,18 +1,24 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import HotelInfo from "../components/HotelInfo";
 import DishFilters from "../components/DishFilters";
 import DishesList from "../components/DishesList";
 import { getHeight } from "../utils/Stylehelper";
 import DetailHeader from "../components/DetailHeader";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import { ParamListRoute } from "../navigationTypes";
+
+type DetailsScreenRouteProp = RouteProp<ParamListRoute, "Details">;
 
 const DetailsScreen = () => {
+  const route = useRoute<DetailsScreenRouteProp>();
+  const { name } = route.params;
   console.log("I am DetailsScreen AND I rendered again");
 
   return (
     <View style={{ height: "100%" }}>
       <DetailHeader />
-      <HotelInfo />
+      <HotelInfo name={name} />
       {/* <DishFilters /> */}
       <DishesList />
     </View>

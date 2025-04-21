@@ -4,6 +4,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 import { useNavigation } from "@react-navigation/native";
 import { getHeight, getWidth } from "../utils/Stylehelper";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { ParamListRoute } from "../navigationTypes";
 
 interface AppButtonProps {
   name: string;
@@ -13,14 +15,14 @@ interface AppButtonProps {
 }
 
 const AppButton = ({ name, photo, deliveryTime, distance }: AppButtonProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ParamListRoute>>();
   console.log("I am AppButton AND I rendered again");
 
   return (
     <TouchableOpacity
       activeOpacity={0.9}
       style={styles.appButtonContainer}
-      onPress={() => navigation.navigate("Details")}
+      onPress={() => navigation.navigate("Details", { name })}
     >
       <Image style={styles.img} source={{ uri: photo }} />
       <View style={styles.padding}>

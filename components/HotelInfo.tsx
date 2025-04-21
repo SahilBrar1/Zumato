@@ -9,12 +9,16 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 
-const CartView = () => {
+type HotelInfoProps = {
+  name: string;
+};
+
+const CartView = ({ name }: HotelInfoProps) => {
   console.log("I am CartView AND I rendered again");
   return (
     <View style={style.container}>
       <View style={style.flex}>
-        <Text style={style.maintext}>Italian pizza</Text>
+        <Text style={style.maintext}>{name}</Text>
         <Ratebutton />
       </View>
       <View style={style.distance}>
