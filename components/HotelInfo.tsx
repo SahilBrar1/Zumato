@@ -9,16 +9,20 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Ratebutton from "./Ratebutton";
 
-type HotelInfoProps = {
-  name: string;
-};
+interface HotelInfoProps {
+  restaurant: {
+    name: string;
+    deliveryTime: string;
+    distance: string;
+  };
+}
 
-const CartView = ({ name }: HotelInfoProps) => {
+const CartView = () => {
   console.log("I am CartView AND I rendered again");
   return (
     <View style={style.container}>
       <View style={style.flex}>
-        <Text style={style.maintext}>{name}</Text>
+        <Text style={style.maintext}>Pizziano</Text>
         <Ratebutton />
       </View>
       <View style={style.distance}>
