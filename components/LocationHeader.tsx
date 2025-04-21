@@ -17,13 +17,13 @@ const MIN_HEADER_HEIGHT = 60;
 const SCROLL_DISTANCE = MAX_HEADER_HEIGHT - MIN_HEADER_HEIGHT;
 const { width } = Dimensions.get("window");
 
-const Header: React.FC = ({ searchText, setSearchText }: any) => {
-  const scrollY = useRef(new Animated.Value(0)).current;
-  const headerHeight = scrollY.interpolate({
-    inputRange: [0, SCROLL_DISTANCE],
-    outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
-    extrapolate: "clamp",
-  });
+const Header: React.FC = ({ searchText, setSearchText, scrollY }: any) => {
+  
+  // const headerHeight = scrollY.interpolate({
+  //   inputRange: [0, SCROLL_DISTANCE],
+  //   outputRange: [MAX_HEADER_HEIGHT, MIN_HEADER_HEIGHT],
+  //   extrapolate: "clamp",
+  // });
 
   const opacity = scrollY.interpolate({
     inputRange: [0, SCROLL_DISTANCE / 2, SCROLL_DISTANCE],
@@ -31,14 +31,15 @@ const Header: React.FC = ({ searchText, setSearchText }: any) => {
     extrapolate: "clamp",
   });
 
-  const translateY = scrollY.interpolate({
-    inputRange: [0, SCROLL_DISTANCE],
-    outputRange: [0, -45],
-    extrapolate: "clamp",
-  });
+
+  // const translateY = scrollY.interpolate({
+  //   inputRange: [0, SCROLL_DISTANCE],
+  //   outputRange: [0, -65],
+  //   extrapolate: "clamp",
+  // });
 
   return (
-    <Animated.View style={[styles.container, { height: 60 }]}>
+    <Animated.View style={[styles.container, { height: 60}]}>
       {/* <Animated.View style={[styles.topRow, { opacity }]}>
         <Ionicons name="location-outline" size={20} color="#fff" />
         <Text style={styles.locationText}>Logicease, Ambala</Text>
@@ -47,9 +48,9 @@ const Header: React.FC = ({ searchText, setSearchText }: any) => {
         </TouchableOpacity>
       </Animated.View> */}
 
-      <Animated.View
-        style={[styles.searchRow, { transform: [{ translateY }] }]}
-      >
+      {/* <Animated.View style={[{backgroundColor: "green", marginTop: 12, paddingHorizontal: 16, height: 180},]}> */}
+      <Animated.View style={[styles.searchRow]}>
+      {/* { transform: [{ translateY }] } actually this property should be inside animated.view with searchRow style*/}
         <Ionicons
           name="search"
           size={18}
@@ -63,6 +64,8 @@ const Header: React.FC = ({ searchText, setSearchText }: any) => {
           style={styles.searchInput}
         />
       </Animated.View>
+        
+      {/* </Animated.View> */}
     </Animated.View>
   );
 };
@@ -82,6 +85,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginTop: 8,
+    paddingHorizontal: 16,
   },
   locationText: {
     color: "#fff",
@@ -98,13 +102,15 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   searchRow: {
+    paddingHorizontal: 16,
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 8,
-    marginTop: 8,
+    marginTop: 12,
     height: 40,
     width: width - 32,
+    opacity:1,
   },
   searchInput: {
     flex: 1,

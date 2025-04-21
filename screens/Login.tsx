@@ -6,6 +6,9 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getHeight, getWidth } from "../utils/Stylehelper";
@@ -14,6 +17,7 @@ import { useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import strings from "../constants/strings";
 
 const Login = () => {
   const userIdref = useRef(null);
@@ -27,43 +31,50 @@ const Login = () => {
       await AsyncStorage.setItem("isLoggedIn", "true");
       navigation.replace("Home");
     } else {
-      Alert.alert("Invalid User ID", "Please enter a valid user ID.");
+      Alert.alert(strings.alertTitle, strings.alertMessage);
     }
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image style={styles.image} source={require("../assets/zomato.jpg")} />
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : undefined}
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 20}
+      >
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center", // ⬅️ Pushes content to center
+               }}keyboardShouldPersistTaps="handled">
+          <Image style={styles.image} source={require("../assets/zomato.jpg")} />
 
-      <View style={{ padding: 10 }}>
-        <Text style={styles.title}>
-          India's #1 Food Delivery and Dining App
-        </Text>
+          <View style={{ padding: 10, flex: 1 }}>
+            <Text style={styles.title}>{strings.appTitle}</Text>
 
-        <Text style={styles.log}>Log in or Sign up</Text>
-        <TextInput
-          style={styles.input}
-          ref={userIdref}
-          value={userId}
-          onChangeText={(text) => setUserId(text)}
-          placeholder="Enter Phone Number"
-          keyboardType="phone-pad"
-          maxLength={10}
-        />
-        {/* <Mybutton onPress={() => navigation.navigate("Home")} /> */}
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Continue</Text>
-        </TouchableOpacity>
-        {/* <Text style={styles.log}>or</Text> */}
-        <Text style={styles.termsText}>
-          By continuing, you agree to our Terms of Service & Privacy Policy
-        </Text>
-      </View>
+            <Text style={styles.log}>{strings.loginHeading}</Text>
+            <TextInput
+              style={styles.input}
+              ref={userIdref}
+              value={userId}
+              onChangeText={(text) => setUserId(text)}
+              placeholder={strings.phonePlaceholder}
+              keyboardType="phone-pad"
+              maxLength={10}
+            />
+
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+              <Text style={styles.buttonText}>{strings.continueButton}</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.termsText}>{strings.terms}</Text>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
 
 export default Login;
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -80,6 +91,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: getHeight(20),
+    fontFamily: 'Poppins-Bold',
   },
   input: {
     borderWidth: getWidth(1),
@@ -87,6 +99,7 @@ const styles = StyleSheet.create({
     borderRadius: getHeight(8),
     padding: 12,
     marginBottom: 15,
+    fontFamily: 'Poppins-Regular',
   },
   button: {
     backgroundColor: colors.btnBackground,
@@ -97,15 +110,18 @@ const styles = StyleSheet.create({
     color: colors.backgroundBlueExtraLight,
     textAlign: "center",
     fontSize: getHeight(16),
+    fontFamily: 'Poppins-SemiBold',
   },
   termsText: {
     marginTop: getHeight(12),
     textAlign: "center",
     fontSize: getHeight(12),
     color: colors.termsColor,
+    fontFamily: 'Poppins-Light',
   },
   log: {
     textAlign: "center",
     marginBottom: 8,
+    fontFamily: 'Poppins-Bold',
   },
 });

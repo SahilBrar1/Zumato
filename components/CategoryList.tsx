@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   View,
   Text,
@@ -10,50 +10,113 @@ import {
   Animated,
 } from "react-native";
 
-interface Category {
-  id: string;
-  name: string;
-  img: any;
-}
+  interface Category {
+    id: string;
+    name: string;
+    img: any;
+  }
+  interface CategoryListProps {
+    onCategorySelect: (category: string) => void;
+    selectedCategory: string;
+  }
+  
+  
 
-const categories: Category[] = [
-  { id: "1", name: "Healthy", img: require("../assets/discZumato.png") },
-  { id: "2", name: "Home Style", img: require("../assets/pizzaimg.jpg") },
-  { id: "3", name: "Pizza", img: require("../assets/zomato.jpg") },
-  { id: "4", name: "Chicken", img: require("../assets/logo.png") },
-];
+  const categories: Category[] = [
+    { id: "1", name: "All", img: require("../assets/zomato.jpg") },
+    { id: "2", name: "Specials", img: require("../assets/zomato.jpg") },
+    { id: "3", name: "Chicken", img: require("../assets/zomato.jpg") },
+    { id: "4", name: "Burger", img: require("../assets/zomato.jpg") },
+    { id: "5", name: "Paneer", img: require("../assets/zomato.jpg") },
+    { id: "6", name: "Cake", img: require("../assets/zomato.jpg") },
+    { id: "7", name: "Fries", img: require("../assets/zomato.jpg") },
+    { id: "8", name: "Milkshake", img: require("../assets/zomato.jpg") },
+    { id: "9", name: "Desserts", img: require("../assets/zomato.jpg") },
+    { id: "10", name: "Cupcake", img: require("../assets/zomato.jpg") },
+    { id: "11", name: "Brownie", img: require("../assets/zomato.jpg") },
+    { id: "12", name: "Sundae", img: require("../assets/zomato.jpg") },
+    { id: "13", name: "Muffin", img: require("../assets/zomato.jpg") },
+    { id: "14", name: "Ice Cream", img: require("../assets/zomato.jpg") },
+  ];
 
-const ITEM_SIZE = 80;
+  const ITEM_SIZE = 60;
 
-const CategoryList: React.FC = ({}) => {
-  // const pos = scrollY.interpolate({
-  //   inputRange: [0, scrollDistance],
-  //   outputRange: ["", "fixed"],
-  //   extrapolate: "clamp",
-  // });
+  interface Props {
+    selectedCategory: string;
+    setSelectedCategory: (category: string) => void;
+  }
+  
+  const CategoryList: React.FC<CategoryListProps> = ({ selectedCategory, onCategorySelect }) => {
 
-  return (
-    <View style={styles.container}>
-      {/* <Text style={styles.heading}>Eat what makes you happy</Text> */}
-      <FlatList
-        data={categories}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={{ paddingHorizontal: 16 }}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.item}>
-            <Image source={item.img} style={styles.image} />
-            <Text style={styles.label}>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
-  );
-};
+    const flatListRef = useRef<FlatList>(null);
+    const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
+
+    return (
+      <View style={styles.container}>
+                <FlatList
+  ref={flatListRef}
+  data={categories}
+  horizontal
+  showsHorizontalScrollIndicator={false}
+  keyExtractor={(item) => item.id}
+  contentContainerStyle={{ paddingHorizontal: 16 }}
+  getItemLayout={(data, index) => ({
+    length: ITEM_SIZE + 12, // item size + marginRight
+    offset: (ITEM_SIZE + 12) * index,
+    index,
+  })}
+  // renderItem={({ item, index }) => (
+  //   <TouchableOpacity
+  //     style={[
+  //       styles.item,
+  //       selectedCategoryIndex === index && { backgroundColor: "#eee", borderRadius: 10 },
+  //     ]}
+  //     onPress={() => {
+  //       setSelectedCategoryIndex(index);
+  //       // setSelectedCategory(item.name);
+  //       flatListRef.current?.scrollToIndex({
+  //         index,
+  //         animated: true,
+  //         viewPosition: 0.5, // center
+  //       });
+  //       onCategorySelect(item.name);
+  //     }}
+  //   >
+  //     <Image source={item.img} style={styles.image} />
+  //     <Text style={styles.label}>{item.name}</Text>
+  //   </TouchableOpacity>
+  // )}
+  renderItem={({ item, index }) => {
+    const isSelected = item.name === selectedCategory;
+    return (
+      <TouchableOpacity
+        style={[
+          styles.item,
+          isSelected && { borderBottomWidth: 2, borderBottomColor: 'red' },
+        ]}
+        onPress={() => {
+          setSelectedCategoryIndex(index); // optionalr
+          flatListRef.current?.scrollToIndex({ index, animated: true, viewPosition: 0.5 });
+          onCategorySelect(item.name);
+        }}
+      >
+        <Image source={item.img} style={styles.image} />
+        <Text style={[styles.label, isSelected && { color: 'red', fontWeight: "bold" }]}>
+          {item.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  }}
+  
+/>
+
+      </View>
+    );
+  };
+  
 
 const styles = StyleSheet.create({
-  container: { padding: 16, backgroundColor: "#fff", elevation: 3 },
+  container: { paddingHorizontal: 2, paddingVertical: 8, backgroundColor: "#fff", elevation: 3 },
   heading: {
     fontSize: 18,
     // fontWeight: "bold",

@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  logo: {
-    width: getWidth(160),
-    height: getWidth(110),
-  },
 });
 
 // src/screens/HomeScreen.tsx

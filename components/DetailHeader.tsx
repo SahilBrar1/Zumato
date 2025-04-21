@@ -37,7 +37,7 @@ export default DetailHeader;
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: "#fff",
-    paddingTop: StatusBar.currentHeight,
+    // paddingTop: StatusBar.currentHeight,
   },
   container: {
     height: 60,
