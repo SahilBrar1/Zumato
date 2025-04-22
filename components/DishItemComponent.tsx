@@ -10,13 +10,10 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 
-type ItemProp = {
-  title: string;
-  price: number;
-};
-const DishItemComponent = ({ title, price }: ItemProp) => {
+type ItemProps = { fullItem: any };
+const DishItemComponent = ({ fullItem }: ItemProps) => {
   const { cart, addToCart, removeFromCart } = useCart();
-  // console.log("price", price);
+  console.log("price", fullItem.price);
 
   //animation logic
   const translateY = useSharedValue(-1000);
@@ -40,7 +37,9 @@ const DishItemComponent = ({ title, price }: ItemProp) => {
   });
   //animation logic
 
-  const isItemInCart = cart.find((cartItem: any) => cartItem.title === title);
+  const isItemInCart = cart.find(
+    (cartItem: any) => cartItem.title === fullItem.title
+  );
 
   return (
     <Animated.View style={[style.viewcontiner, animatedStyle]}>
@@ -48,7 +47,7 @@ const DishItemComponent = ({ title, price }: ItemProp) => {
         <View style={style.firstView}>
           <Text style={style.bestSeller}>Best Seller</Text>
 
-          <Text style={style.titleText}>{title}</Text>
+          <Text style={style.titleText}>{fullItem.title}</Text>
 
           <View style={style.starflex}>
             <Ionicons name="star" size={16} color={"gold"} />
@@ -59,7 +58,7 @@ const DishItemComponent = ({ title, price }: ItemProp) => {
             <Text> (320)</Text>
           </View>
 
-          <Text style={style.priceText}>Rs. {price}</Text>
+          <Text style={style.priceText}>Rs. {fullItem.price}</Text>
           <Text style={style.discountText}>50% Off</Text>
           <Text style={style.descText}>Gently Cooked</Text>
         </View>
@@ -68,7 +67,9 @@ const DishItemComponent = ({ title, price }: ItemProp) => {
           <Image style={style.img} source={require("../assets/pizzaimg.jpg")} />
           <View style={style.cartbtn}>
             <TouchableOpacity
-              onPress={() => removeFromCart({ title, quantity: 1 })}
+              onPress={() =>
+                removeFromCart({ title: fullItem.title, quantity: 1 })
+              }
               style={{
                 backgroundColor: "white",
                 width: getWidth(20),
@@ -82,7 +83,11 @@ const DishItemComponent = ({ title, price }: ItemProp) => {
             <Text>{isItemInCart ? isItemInCart.quantity : "ADD"}</Text>
             <TouchableOpacity
               onPress={() => {
-                addToCart({ title, quantity: 1 });
+                addToCart({
+                  title: fullItem.title,
+                  quantity: 1,
+                  price: fullItem.price,
+                });
               }}
               style={{
                 backgroundColor: "white",

@@ -3,6 +3,7 @@ import React, { createContext, useState, useContext } from "react";
 type CartItem = {
   title: string;
   quantity: number;
+  price?: number | undefined;
 };
 
 type CartContextType = {
@@ -11,6 +12,7 @@ type CartContextType = {
   removeFromCart: (item: CartItem) => void;
 };
 const CartContext = createContext<CartContextType | undefined>(undefined);
+
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
@@ -32,6 +34,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     });
   };
+  // console.log("Cart contents:", cart);
 
   const removeFromCart = (item: CartItem) => {
     console.log("mai minus mai chla hun");

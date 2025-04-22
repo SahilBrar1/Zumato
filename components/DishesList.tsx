@@ -3,8 +3,10 @@ import React from "react";
 import DishItem from "./DishItemComponent";
 
 type DishItem = {
-  title: string;
-  price: number;
+  fullItem: {
+    title: string;
+    price: number;
+  };
 };
 
 const DishesList = () => {
@@ -26,9 +28,7 @@ const DishesList = () => {
   return (
     <FlatList
       data={data}
-      renderItem={({ item }) => (
-        <DishItem title={item.title} price={item.price} />
-      )}
+      renderItem={({ item }) => <DishItem fullItem={item} />}
       initialNumToRender={2}
       maxToRenderPerBatch={3}
       windowSize={3}

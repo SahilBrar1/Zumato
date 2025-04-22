@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -5,55 +6,79 @@ import {
   StyleSheet,
   FlatList,
 } from "react-native";
-import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useCart } from "./CartContext";
 import CartListComponent from "./CartListComponent";
-
 import { getHeight } from "../utils/Stylehelper";
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 const AddCart = () => {
   const { cart } = useCart();
-  // const cart = [{ title: "First Item" }, { title: "Second Item" }];
+  const navigation = useNavigation<StackNavigationProp<any>>();
+
+  const baseTotal = cart.reduce(
+    (acc: number, item: { price: number; quantity: number }) =>
+      acc + (item.price ?? 0) * item.quantity,
+    0
+  );
+
+  const isAboveHundred = baseTotal > 100;
+  const discount = isAboveHundred ? 33 : 0;
+  const [goldAdded, setGoldAdded] = useState(false);
+
+  const finalPrice = baseTotal - discount + (goldAdded ? 300 : 0);
+
   return (
     <View style={styles.container}>
-      <View style={styles.offerBanner}>
-        <Text style={styles.offerText}> You saved ₹33 on this order</Text>
-      </View>
+      {isAboveHundred && (
+        <View style={styles.offerBanner}>
+          <Text style={styles.offerText}>You saved ₹33 on this order</Text>
+        </View>
+      )}
+
       <View style={styles.goldBox}>
         <View>
           <Text style={styles.boldText}>Get Gold for 3 months</Text>
           <Text>Unlimited free deliveries & more benefits</Text>
           <Text style={styles.learnMore}>Learn more</Text>
         </View>
-        <TouchableOpacity style={styles.addBtn}>
-          <Text style={{ color: "red" }}>ADD</Text>
+        <TouchableOpacity
+          style={styles.addBtn}
+          onPress={() => setGoldAdded(!goldAdded)}
+        >
+          <Text style={{ color: "red" }}>{goldAdded ? "Remove" : "ADD"}</Text>
         </TouchableOpacity>
       </View>
+
       <View style={styles.list}>
         <FlatList
           data={cart}
+          keyExtractor={(item, index) => `${item.title}-${index}`}
           renderItem={({ item }) => (
             <CartListComponent title={item.title} quantity={item.quantity} />
           )}
         />
       </View>
+      {/* onPress={() => navigation.navigate("Details")} */}
       <TouchableOpacity>
         <Text style={styles.addMore}>+ Add more items</Text>
       </TouchableOpacity>
-      <View style={styles.dashedLine}></View>
+
+      <View style={styles.dashedLine} />
+
       <View style={styles.noteBox}>
-        <Ionicons name="document" />
-        <Text style={{ marginLeft: 5 }}>Add a note for the restaurant</Text>
+        <Ionicons name="cart" />
+        <Text style={{ marginLeft: 5 }}>Total Price: ₹{finalPrice}</Text>
       </View>
+
       <View style={styles.offerbanner2}>
         <Text style={styles.offerText}>
-          {" "}
           Save Extra By Applying Coupons on Every Order
         </Text>
       </View>
+
       <View>
-        <View style={styles.paymentSection}></View>
         <TouchableOpacity style={styles.paymentBtn}>
           <Text style={{ color: "white" }}>Done</Text>
         </TouchableOpacity>
@@ -61,11 +86,13 @@ const AddCart = () => {
     </View>
   );
 };
+
 export default AddCart;
+
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    height: "100%",
+    flex: 1,
   },
   offerBanner: {
     backgroundColor: "#D6EAF8",
@@ -100,17 +127,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: "center",
   },
-  itemBox: {
-    marginBottom: 12,
-  },
-  itemRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  qtyBox: {
-    borderWidth: 1,
-    paddingHorizontal: 8,
-    borderRadius: 5,
+  list: {
+    height: getHeight(250),
+    width: "100%",
   },
   addMore: {
     color: "red",
@@ -132,13 +151,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginBottom: 20,
   },
-  paymentSection: {
-    marginTop: 1,
-  },
-  paymentText: {
-    fontWeight: "bold",
-    marginBottom: 8,
-  },
   paymentBtn: {
     backgroundColor: "red",
     padding: 10,
@@ -150,35 +162,5 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
-  },
-  paymentText2: {
-    fontWeight: "bold",
-    marginBottom: 8,
-    color: "blue",
-    fontSize: 15,
-    margin: 10,
-  },
-  offerbanner3: {
-    backgroundColor: "#D6EAF8",
-    borderRadius: 5,
-    marginBottom: 10,
-    height: 160,
-  },
-  border: {
-    borderWidth: 1,
-    padding: 8,
-    margin: 10,
-    borderRadius: 5,
-    height: 40,
-    alignSelf: "flex-start",
-    width: 100,
-    fontWeight: "bold",
-    textAlign: "center",
-    alignContent: "center",
-    marginRight: 250,
-  },
-  list: {
-    height: getHeight(250),
-    width: "100%",
   },
 });
