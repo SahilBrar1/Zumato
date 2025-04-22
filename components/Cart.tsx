@@ -12,6 +12,7 @@ import CartListComponent from "./CartListComponent";
 import { getHeight } from "../utils/Stylehelper";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import colors from "../tokens/colors";
 
 const AddCart = () => {
   const { cart } = useCart();
@@ -56,7 +57,11 @@ const AddCart = () => {
           data={cart}
           keyExtractor={(item, index) => `${item.title}-${index}`}
           renderItem={({ item }) => (
-            <CartListComponent title={item.title} quantity={item.quantity} />
+            <CartListComponent
+              title={item.title}
+              quantity={item.quantity}
+              price={item.price}
+            />
           )}
         />
       </View>
@@ -80,7 +85,7 @@ const AddCart = () => {
 
       <View>
         <TouchableOpacity style={styles.paymentBtn}>
-          <Text style={{ color: "white" }}>Done</Text>
+          <Text style={{ color: "white" }}>Place Order</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -93,6 +98,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     flex: 1,
+    backgroundColor: colors.backgroundBlueExtraLight,
   },
   offerBanner: {
     backgroundColor: "#D6EAF8",
@@ -110,7 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 15,
+    // marginBottom: 15,
   },
   boldText: {
     fontWeight: "bold",
@@ -130,6 +136,7 @@ const styles = StyleSheet.create({
   list: {
     height: getHeight(250),
     width: "100%",
+    // backgroundColor: "#fff",
   },
   addMore: {
     color: "red",
