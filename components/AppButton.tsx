@@ -16,13 +16,21 @@ interface AppButtonProps {
 
 const AppButton = ({ name, photo, deliveryTime, distance }: AppButtonProps) => {
   const navigation = useNavigation<StackNavigationProp<ParamListRoute>>();
-  console.log("I am AppButton AND I rendered again");
+  // console.log("I am AppButton AND I rendered again");
 
   return (
     <TouchableOpacity
       activeOpacity={0.9}
       style={styles.appButtonContainer}
-      onPress={() => navigation.navigate("Details", { name })}
+      onPress={() =>
+        navigation.navigate("Details", {
+          restaurant: {
+            name,
+            deliveryTime,
+            distance,
+          },
+        })
+      }
     >
       <Image style={styles.img} source={{ uri: photo }} />
       <View style={styles.padding}>

@@ -16,22 +16,29 @@ interface HotelInfoProps {
     distance: string;
   };
 }
+interface Props {
+  name: string;
+  deliverTime: string;
+  dist: string;
+}
+const HotelInfo = ({ name, deliverTime, dist }: Props) => {
+  // console.log("distance", dist);
 
-const CartView = () => {
-  console.log("I am CartView AND I rendered again");
+  // const { name, deliveryTime, distance } = restaurant;
+  console.log("I am HotelInfo AND I rendered again");
   return (
     <View style={style.container}>
       <View style={style.flex}>
-        <Text style={style.maintext}>Pizziano</Text>
+        <Text style={style.maintext}>{name}</Text>
         <Ratebutton />
       </View>
       <View style={style.distance}>
         <Ionicons style={style.icon} name="location" />
-        <Text style={style.font}>1km . Ambala Locality</Text>
+        <Text style={style.font}>{deliverTime} . Ambala Locality</Text>
       </View>
       <View style={style.distance}>
         <Ionicons style={style.icon} name="time" />
-        <Text style={style.font}>10-15 minutes . schedule fot later</Text>
+        <Text style={style.font}>{dist} minutes . schedule fot later</Text>
       </View>
       <ScrollView horizontal={true} style={style.scrollcontainer}>
         <Text style={style.textop}>frequently reordered</Text>
@@ -42,7 +49,7 @@ const CartView = () => {
   );
 };
 
-export default CartView;
+export default HotelInfo;
 const style = StyleSheet.create({
   container: {
     padding: 10,
@@ -67,8 +74,9 @@ const style = StyleSheet.create({
   },
   maintext: {
     fontSize: 40,
-    fontFamily: "sans-serif",
-    fontWeight: "bold",
+    fontFamily: "Poppins-SemiBold",
+    // fontWeight: "bold",
+    // fontStyle: "italic",
     // margin: 7,
   },
   distance: {

@@ -38,13 +38,13 @@ const FlatlistComponent = () => {
     });
 
     return [null, ...filtered];
-  }, [searchText, selectedCategory]);
+  }, [searchText, selectedCategory, allData]);
 
   const handleCategoryChange = useCallback((category: any) => {
     setSelectedCategory(category);
   }, []);
 
-  console.log("FlatlistComponent rendered again");
+  // console.log("FlatlistComponent rendered again");
 
   if (isLoading || fetchStatus === "fetching") {
     return (

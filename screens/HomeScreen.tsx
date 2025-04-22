@@ -6,7 +6,7 @@ import { getWidth } from "../utils/Stylehelper";
 
 const HomeScreen = () => {
   const { isConnected } = useNetInfo();
-  console.log("I am HomeScreen AND I rendered again");
+  // console.log("I am HomeScreen AND I rendered again");
 
   return (
     <View style={{ flex: 1 }}>

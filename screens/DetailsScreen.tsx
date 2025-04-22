@@ -13,12 +13,15 @@ type DetailsScreenRouteProp = RouteProp<ParamListRoute, "Details">;
 const DetailsScreen = () => {
   const route = useRoute<DetailsScreenRouteProp>();
   const { restaurant } = route.params;
-  console.log("I am DetailsScreen AND I rendered again");
+  const { name, deliveryTime, distance } = restaurant;
+  // console.log("I am DetailsScreen AND I rendered again");
+  // console.log("restaurant", restaurant);
+  // console.log("distance", distance);
 
   return (
     <View style={{ height: "100%" }}>
       <DetailHeader />
-      <HotelInfo />
+      <HotelInfo name={name} deliverTime={deliveryTime} dist={distance} />
       {/* <DishFilters /> */}
       <DishesList />
     </View>

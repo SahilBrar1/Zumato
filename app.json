@@ -4,11 +4,11 @@
     "slug": "Zumato",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/zo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/zomato.png",
+      "image": "./assets/zo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

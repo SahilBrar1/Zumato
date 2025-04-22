@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({
         )}
 
         <Image
-          source={require("../assets/logo.png")}
+          source={require("../assets/zo.png")}
           style={styles.logo}
           resizeMode="contain"
         />
