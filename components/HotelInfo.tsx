@@ -29,7 +29,9 @@ const HotelInfo = ({ name, deliverTime, dist }: Props) => {
   return (
     <View style={style.container}>
       <View style={style.flex}>
-        <Text style={style.maintext}>{name}</Text>
+        <Text numberOfLines={1} style={style.maintext}>
+          {name}
+        </Text>
         <Ratebutton />
       </View>
       <View style={style.distance}>
@@ -73,7 +75,7 @@ const style = StyleSheet.create({
     marginLeft: 8,
   },
   maintext: {
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: "Poppins-SemiBold",
     // fontWeight: "bold",
     // fontStyle: "italic",

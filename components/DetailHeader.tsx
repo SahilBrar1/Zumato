@@ -26,7 +26,7 @@ const DetailHeader = () => {
           style={styles.cartButton}
           onPress={() => navigation.navigate("Cart")}
         >
-          <Text style={styles.text}>View Cart</Text>
+          {/* <Text style={styles.text}>View Cart</Text> */}
         </TouchableOpacity>
       </View>
     </SafeAreaView>

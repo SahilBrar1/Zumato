@@ -22,7 +22,7 @@ const categories: Category[] = [
   { id: "1", name: "All", img: require("../assets/cat_all.webp") },
   { id: "2", name: "Specials", img: require("../assets/cat_specials.webp") },
   { id: "3", name: "Chicken", img: require("../assets/cat_chicken.jpg") },
-  { id: "4", name: "Burger", img: require("../assets/cat_burger.png") },
+  { id: "4", name: "Burger", img: require("../assets/cat_burger2.png") },
   { id: "5", name: "Paneer", img: require("../assets/cat_pizza.png") },
   { id: "6", name: "Cake", img: require("../assets/cat_cake.jpg") },
   { id: "7", name: "Fries", img: require("../assets/cat_fries.jpg") },
