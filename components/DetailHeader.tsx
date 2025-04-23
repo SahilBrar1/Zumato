@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import React from "react";
 import { getHeight, getWidth } from "../utils/Stylehelper";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import colors from "../tokens/colors";
@@ -20,12 +22,22 @@ const DetailHeader = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Image style={styles.logo} source={require("../assets/zo.png")} />
+        <View style={styles.firstView}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            style={styles.backButton}
+          >
+            <Ionicons name="arrow-back" size={24} color="grey" />
+          </TouchableOpacity>
+          <Image style={styles.logo} source={require("../assets/zo.png")} />
+        </View>
 
         <TouchableOpacity
           style={styles.cartButton}
           onPress={() => navigation.navigate("Cart")}
         >
+          <Ionicons style={styles.text} name="cart" />
+
           {/* <Text style={styles.text}>View Cart</Text> */}
         </TouchableOpacity>
       </View>
@@ -58,15 +70,22 @@ const styles = StyleSheet.create({
     marginRight: 10,
     backgroundColor: colors.btnBackground,
     height: getHeight(35),
-    width: getWidth(85),
+    width: getWidth(60),
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
   },
   text: {
     color: colors.white,
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 22,
+  },
+  backButton: {
+    width: 24,
+  },
+  firstView: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

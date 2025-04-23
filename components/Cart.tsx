@@ -66,7 +66,7 @@ const AddCart = () => {
         />
       </View>
       {/* onPress={() => navigation.navigate("Details")} */}
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={styles.addMore}>+ Add more items</Text>
       </TouchableOpacity>
 

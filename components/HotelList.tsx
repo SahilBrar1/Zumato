@@ -89,11 +89,11 @@ const FlatlistComponent = () => {
           item?.id ? item.id.toString() : `null-${index}`
         }
         renderItem={renderItem}
-        initialNumToRender={1}
-        maxToRenderPerBatch={3}
-        windowSize={2}
+        initialNumToRender={4}
+        maxToRenderPerBatch={4}
+        windowSize={3}
+        removeClippedSubviews={true}
 
-        // removeClippedSubviews={true}
         // onEndReached={fetchNextPage}
         // onEndReachedThreshold={0.5}
         // ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}

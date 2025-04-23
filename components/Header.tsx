@@ -9,6 +9,7 @@ import {
   StatusBar,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 type HeaderProps = {
   title: string;
@@ -17,22 +18,18 @@ type HeaderProps = {
   logo?: any;
 };
 
-const Header: React.FC<HeaderProps> = ({
-  title,
-  showBackButton = false,
-  onBackPress,
-}) => {
+const Header: React.FC<HeaderProps> = ({ title }) => {
+  const navigation = useNavigation();
   console.log("I am Header AND I rendered again");
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {showBackButton ? (
-          <TouchableOpacity onPress={onBackPress} style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color="black" />
-          </TouchableOpacity>
-        ) : (
-          <View style={styles.backButtonPlaceholder} />
-        )}
+        <TouchableOpacity
+          onPress={() => navigation.goBack}
+          style={styles.backButton}
+        >
+          <Ionicons name="arrow-back" size={24} color="grey" />
+        </TouchableOpacity>
 
         <Image
           source={require("../assets/zo.png")}
@@ -66,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   backButton: {
+    marginLeft: 10,
     width: 24,
     marginRight: 10,
   },
